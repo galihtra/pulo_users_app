@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619912409585",
+    "project_id": "pulo-9750d",
+    "storage_bucket": "pulo-9750d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619912409585:android:ebf85cf7ea075c6b9e5450",
+        "android_client_info": {
+          "package_name": "com.example.users_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl5WIUPtrnSmQGRosTLnIbti4HqJ47FwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
