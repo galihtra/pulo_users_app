@@ -37,48 +37,50 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  signInUser() async {
+  signInUser() async
+  {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext context) =>
-          LoadingDialog(messageText: "Allowing you to Login..."),
+      builder: (BuildContext context) => LoadingDialog(messageText: "Allowing you to Login..."),
     );
 
-    final User? userFirebase = (await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-      email: emailTextEditingController.text.trim(),
-      password: passwordTextEditingController.text.trim(),
-    )
-            .catchError((errorMsg) {
-      Navigator.pop(context);
-      cMethods.displaySnackBar(errorMsg.toString(), context);
-    }))
-        .user;
+    final User? userFirebase = (
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailTextEditingController.text.trim(),
+          password: passwordTextEditingController.text.trim(),
+        ).catchError((errorMsg)
+        {
+          Navigator.pop(context);
+          cMethods.displaySnackBar(errorMsg.toString(), context);
+        })
+    ).user;
 
-    if (!context.mounted) return;
+    if(!context.mounted) return;
     Navigator.pop(context);
 
-    if (userFirebase != null) {
-      DatabaseReference usersRef = FirebaseDatabase.instance
-          .ref()
-          .child("users")
-          .child(userFirebase.uid);
-      usersRef.once().then((snap) {
-        if (snap.snapshot.value != null) {
-          if ((snap.snapshot.value as Map)["blockStatus"] == "no") {
+    if(userFirebase != null)
+    {
+      DatabaseReference usersRef = FirebaseDatabase.instance.ref().child("users").child(userFirebase.uid);
+      await usersRef.once().then((snap)
+      {
+        if(snap.snapshot.value != null)
+        {
+          if((snap.snapshot.value as Map)["blockStatus"] == "no")
+          {
             userName = (snap.snapshot.value as Map)["name"];
-            Navigator.push(
-                context, MaterialPageRoute(builder: (c) => HomePage()));
-          } else {
-            FirebaseAuth.instance.signOut();
-            cMethods.displaySnackBar(
-                "you are blocked. Contact admin: alizeb875@gmail.com", context);
+            Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomePage()));
           }
-        } else {
+          else
+          {
+            FirebaseAuth.instance.signOut();
+            cMethods.displaySnackBar("you are blocked. Contact admin: galih@gmail.com", context);
+          }
+        }
+        else
+        {
           FirebaseAuth.instance.signOut();
-          cMethods.displaySnackBar(
-              "your record do not exists as a User.", context);
+          cMethods.displaySnackBar("your record do not exists as a User.", context);
         }
       });
     }
