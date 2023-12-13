@@ -1,12 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:users_app/authentication/login_screen.dart';
 import 'package:users_app/global/global_var.dart';
+import 'package:users_app/main/auth/auth_page.dart';
 import 'package:users_app/pages/search_destination_page.dart';
 
 import '../methods/common_methods.dart';
@@ -28,6 +31,24 @@ class _HomePageState extends State<HomePage> {
   double searchContainerHeight = 276;
   double bottomMapPadding = 0;
 
+  void updateMapTheme(GoogleMapController controller)
+  {
+    getJsonFileFromThemes("themes/night_style.json").then((value)=> setGoogleMapStyle(value, controller));
+  }
+
+  Future<String> getJsonFileFromThemes(String mapStylePath) async
+  {
+    ByteData byteData = await rootBundle.load(mapStylePath);
+    var list = byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
+    return utf8.decode(list);
+  }
+
+  setGoogleMapStyle(String googleMapStyle, GoogleMapController controller)
+  {
+    controller.setMapStyle(googleMapStyle);
+  }
+
+
   getCurrentLiveLocationOfUser() async {
     Position positionOfUser = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.bestForNavigation);
@@ -41,6 +62,8 @@ class _HomePageState extends State<HomePage> {
 
     controllerGoogleMap!
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    await CommonMethods.convertGeoGraphicCoOrdinatesIntoHumanReadableAddress(currentPostionOfUser!, context);    
 
     await getUserInfoAndCheckBlockStatus();
   }
@@ -61,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           FirebaseAuth.instance.signOut();
 
           Navigator.push(
-              context, MaterialPageRoute(builder: (c) => const LoginScreen()));
+              context, MaterialPageRoute(builder: (c) => const AuthPage()));
 
           cMethods.displaySnackBar(
               "you are blocked. Contact admin: alizeb875@gmail.com", context);
@@ -69,7 +92,7 @@ class _HomePageState extends State<HomePage> {
       } else {
         FirebaseAuth.instance.signOut();
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const LoginScreen()));
+            context, MaterialPageRoute(builder: (c) => const AuthPage()));
       }
     });
   }
@@ -166,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                     FirebaseAuth.instance.signOut();
 
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (c) => const LoginScreen()));
+                        MaterialPageRoute(builder: (c) => const AuthPage()));
                   },
                   child: ListTile(
                     leading: IconButton(
@@ -195,6 +218,7 @@ class _HomePageState extends State<HomePage> {
               initialCameraPosition: googlePlexInitialPosition,
               onMapCreated: (GoogleMapController mapController) {
                 controllerGoogleMap = mapController;
+                updateMapTheme(controllerGoogleMap!);
 
                 googleMapCompleterController.complete(controllerGoogleMap);
 
