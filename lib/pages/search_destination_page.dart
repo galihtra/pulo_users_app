@@ -43,7 +43,6 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
         setState(() {
           dropOffPredictionsPlacesList = predictionsList;
         });
-
       }
     }
   }
@@ -57,6 +56,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
     pickUpTextEditingController.text = userAddress;
 
     return Scaffold(
+      backgroundColor: Colors.black87.withOpacity(1),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -65,7 +65,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
               child: Container(
                 height: 230,
                 decoration: const BoxDecoration(
-                  color: Colors.black12,
+                  color: Color.fromARGB(222, 18, 18, 18),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
@@ -101,6 +101,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                               "Set Dropoff Location",
                               style: TextStyle(
                                 fontSize: 18,
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -126,7 +127,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
@@ -166,7 +167,7 @@ class _SearchDestinationPageState extends State<SearchDestinationPage> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(

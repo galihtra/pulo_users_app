@@ -1,8 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
-
-import '../../../utils/color_resources.dart';
 import '../../../utils/images.dart';
 
 class BannerWidget extends StatefulWidget {

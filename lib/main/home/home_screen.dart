@@ -8,7 +8,6 @@ import '../../utils/custom_themes.dart';
 import '../../utils/dimensions.dart';
 import '../../utils/images.dart';
 import '../../utils/light_themes.dart';
-import '../base_widgets/title_row.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
