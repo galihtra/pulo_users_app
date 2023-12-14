@@ -39,6 +39,7 @@ dependencies:
   firebase_storage: null
   flutter:
     sdk: flutter
+  flutter_polyline_points: ^2.0.0
   flutter_svg: ^2.0.9
   fluttertoast: ^8.2.4
   geolocator: ^10.1.0
@@ -48,12 +49,13 @@ dependencies:
   provider: null
   shimmer: ^3.0.0
   webview_flutter: ^4.2.4
+  loading_animation_widget: 
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.13.1"
 
 flutter_launcher_icons:
   android: "launcher_icon"
