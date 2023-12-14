@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:intl/intl.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -634,11 +635,11 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Text(
                                       (tripDirectionDetailsInfo != null)
-                                          ? "\$ ${(cMethods.calculateFareAmount(tripDirectionDetailsInfo!)).toString()}"
+                                          ? "Rp ${NumberFormat('#,##0', 'id_ID').format(cMethods.calculateFareAmount(tripDirectionDetailsInfo!))}"
                                           : "",
                                       style: const TextStyle(
                                         fontSize: 18,
-                                        color: Colors.white70,
+                                        color: Colors.greenAccent,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

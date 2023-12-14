@@ -49,13 +49,12 @@ class MenusWidget extends StatelessWidget {
     // Navigate to different pages based on the clicked menu item
     switch (icon.icon) {
       case 'MOTOR':
+        break;
+      case 'MOBIL':
         Navigator.push(
           context,
           MaterialPageRoute(builder: (c) => const HomePage()),
         );
-        break;
-      case 'gocar':
-        // Navigate to GoCar page
         break;
       case 'gofood':
         // Navigate to GoFood page
