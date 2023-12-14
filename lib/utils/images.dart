@@ -10,6 +10,7 @@ class Images {
   static const String notification = 'assets/images/notification.png';
   static const String cartArrowDownImage = 'assets/images/cart_arrow_down.png';
   static const String placeholder = 'assets/images/placeholder_1x1.png';
+  static const String banner = 'assets/images/banner1.png';
   // static const String placeholder_1x1 = 'assets/images/placeholder_1x1.png';
   static const String flashDeal = 'assets/images/flash_deal.png';
   static const String filterImage = 'assets/images/filter.png';

@@ -12,7 +12,7 @@ class MenusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: height,
+      height: 180,
       child: GridView.count(crossAxisCount: 4, mainAxisSpacing: 8, children: [
         ...menuIcons.map(
           (icon) => GestureDetector(

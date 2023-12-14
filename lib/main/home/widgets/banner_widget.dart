@@ -46,9 +46,10 @@ class _BannerWidgetState extends State<BannerWidget> {
                         child: FadeInImage.assetNetwork(
                           placeholder: Images.placeholder,
                           fit: BoxFit.cover,
-                          image: 'https://picsum.photos/250',
+                          image: '',
                           imageErrorBuilder: (c, o, s) => Image.asset(
-                            Images.placeholder,
+                            Images.banner,
+                            // Images.placeholder,
                             fit: BoxFit.cover,
                           ),
                         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:users_app/main/home/widgets/balance_widget.dart';
 import 'package:users_app/main/home/widgets/banner_widget.dart';
+import 'package:users_app/main/home/widgets/content_widget.dart';
 import 'package:users_app/main/home/widgets/menus_widget.dart';
 
 import '../../utils/color_resources.dart';
@@ -188,7 +189,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: Dimensions.homePagePadding),
                         const MenusWidget(),
-                        const SizedBox(height: Dimensions.homePagePadding),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "Content for You",
+                              style: regular16.copyWith(color: dark2),
+                            ),
+                          ),
+                        ),
+                        const ContentWidget(),
                       ],
                     ),
                   ),

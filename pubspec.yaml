@@ -39,19 +39,20 @@ dependencies:
   firebase_storage: null
   flutter:
     sdk: flutter
+  flutter_geofire: null
   flutter_polyline_points: ^2.0.0
   flutter_svg: ^2.0.9
   fluttertoast: ^8.2.4
   geolocator: ^10.1.0
+  google_fonts: ^6.1.0
   google_maps_flutter: ^2.5.0
   http: ^1.1.2
+  intl: ^0.17.0
+  loading_animation_widget: null
   permission_handler: ^11.1.0
   provider: null
   shimmer: ^3.0.0
   webview_flutter: ^4.2.4
-  loading_animation_widget: 
-  intl: ^0.17.0
-  flutter_geofire: 
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
