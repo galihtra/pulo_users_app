@@ -74,6 +74,7 @@ class SignInWidgetState extends State<SignInWidget> {
         if (snap.snapshot.value != null) {
           if ((snap.snapshot.value as Map)["blockStatus"] == "no") {
             userName = (snap.snapshot.value as Map)["name"];
+            userPhone = (snap.snapshot.value as Map)["phone"];
             Navigator.push(
                 context,
                 MaterialPageRoute(

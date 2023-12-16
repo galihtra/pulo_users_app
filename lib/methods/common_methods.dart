@@ -59,6 +59,7 @@ class CommonMethods {
       humanReadableAddress = responseFromAPI["results"][0]["formatted_address"];
       AddressModel model = AddressModel();
       model.humanReadableAddress = humanReadableAddress;
+      model.placeName = humanReadableAddress;
       model.longitudePosition = position.longitude;
       model.latitudePosition = position.latitude;
 
