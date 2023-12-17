@@ -53,6 +53,7 @@ dependencies:
   provider: null
   shimmer: ^3.0.0
   webview_flutter: ^4.2.4
+  restart_app: 
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
