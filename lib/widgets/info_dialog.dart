@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 
-class InfoDialog extends StatefulWidget
-{
+import '../pages/home_page.dart';
+
+class InfoDialog extends StatefulWidget {
   String? title, description;
 
-  InfoDialog({super.key, this.title, this.description,});
+  InfoDialog({
+    super.key,
+    this.title,
+    this.description,
+  });
 
   @override
   State<InfoDialog> createState() => _InfoDialogState();
 }
 
-class _InfoDialogState extends State<InfoDialog>
-{
+class _InfoDialogState extends State<InfoDialog> {
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14.0),
@@ -31,9 +34,9 @@ class _InfoDialogState extends State<InfoDialog>
           child: SingleChildScrollView(
             child: Column(
               children: [
-
-                const SizedBox(height: 12,),
-
+                const SizedBox(
+                  height: 12,
+                ),
                 Text(
                   widget.title.toString(),
                   style: const TextStyle(
@@ -42,9 +45,9 @@ class _InfoDialogState extends State<InfoDialog>
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
-                const SizedBox(height: 27,),
-
+                const SizedBox(
+                  height: 27,
+                ),
                 Text(
                   widget.description.toString(),
                   textAlign: TextAlign.center,
@@ -52,24 +55,30 @@ class _InfoDialogState extends State<InfoDialog>
                     color: Colors.white54,
                   ),
                 ),
-
-                const SizedBox(height: 32,),
-
+                const SizedBox(
+                  height: 32,
+                ),
                 SizedBox(
                   width: 202,
                   child: ElevatedButton(
-                    onPressed: ()
-                    {
+                    onPressed: () {
                       Navigator.pop(context);
+
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                        (route) => false,
+                      );
                     },
                     child: const Text(
                       "OK",
                     ),
                   ),
                 ),
-
-                const SizedBox(height: 12,),
-
+                const SizedBox(
+                  height: 12,
+                ),
               ],
             ),
           ),
