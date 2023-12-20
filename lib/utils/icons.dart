@@ -1,5 +1,4 @@
 import '../models/gojek_icon.dart';
-import 'light_themes.dart';
 
 List<GojekIcon> gopayIcons = [
   GojekIcon(icon: 'pay', title: 'Tarik'),
@@ -10,10 +9,10 @@ List<GojekIcon> gopayIcons = [
 List<GojekIcon> menuIcons = [
   GojekIcon(icon: 'MOTOR', title: 'Motor'),
   GojekIcon(icon: 'MOBIL', title: 'Mobil'),
-  GojekIcon(icon: 'BECAK', title: 'Becak'),
   GojekIcon(icon: 'PENGIRIMAN', title: 'Kurir'),
+  GojekIcon(icon: 'FOOD', title: 'Makanan'),
   GojekIcon(icon: 'MART', title: 'Mart'),
-  GojekIcon(icon: 'UMKM', title: 'UMKM'),
-  GojekIcon(icon: 'BENTOR', title: 'Difabel'),
-  GojekIcon(icon: 'KIOS', title: 'Kios'),
+  GojekIcon(icon: 'PASAR', title: 'Pasar'),
+  GojekIcon(icon: 'BOX', title: 'Rental'),
+  GojekIcon(icon: 'TELFON', title: 'Pulsa & PPOB'),
 ];

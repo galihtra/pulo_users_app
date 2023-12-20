@@ -10,7 +10,6 @@ class MenusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return SizedBox(
       height: 180,
       child: GridView.count(crossAxisCount: 4, mainAxisSpacing: 8, children: [
