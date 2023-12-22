@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:users_app/main/makanan/models/bigcontainermodel.dart';
-import 'package:users_app/main/makanan/models/smallcontainermodel.dart';
-import 'package:users_app/main/makanan/utils/constant.dart';
+import 'package:users_app/main/food/models/bigcontainermodel.dart';
+import 'package:users_app/main/food/models/smallcontainermodel.dart';
+import 'package:users_app/main/food/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
 

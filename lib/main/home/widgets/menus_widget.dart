@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:users_app/main/makanan/pages/food_page.dart';
+import 'package:users_app/main/food/pages/food_page.dart';
+import 'package:users_app/main/mart/pages/mart_page.dart';
 import 'package:users_app/pages/home_page.dart';
 
 import '../../../models/gojek_icon.dart';
@@ -61,6 +62,13 @@ class MenusWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (c) => const FoodPage()),
+        );
+        break;
+      case 'MART':
+        // Navigate to Food page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (c) => const MartPage()),
         );
         break;
       // Add cases for other menu items as needed
