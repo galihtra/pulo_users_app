@@ -13,6 +13,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:users_app/global/global_var.dart';
 import 'package:users_app/global/trip_var.dart';
 import 'package:users_app/methods/common_methods.dart';
@@ -20,6 +21,7 @@ import 'package:users_app/methods/manage_drivers_methods.dart';
 import 'package:users_app/methods/push_notification_service.dart';
 import 'package:users_app/models/direction_details.dart';
 import 'package:users_app/models/online_nearby_drivers.dart';
+import 'package:users_app/pages/about_page.dart';
 import 'package:users_app/pages/search_destination_page.dart';
 import 'package:users_app/widgets/info_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,6 +29,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../appInfo/app_info.dart';
 import '../main/auth/auth_page.dart';
 import '../widgets/loading_dialog.dart';
+import '../widgets/payment_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -470,7 +473,7 @@ class _HomePageState extends State<HomePage> {
 
     tripRequestRef!.set(dataMap);
 
-    tripStreamSubscription = tripRequestRef!.onValue.listen((eventSnapshot)
+    tripStreamSubscription = tripRequestRef!.onValue.listen((eventSnapshot) async
     {
       if(eventSnapshot.snapshot.value == null)
       {
@@ -540,6 +543,33 @@ class _HomePageState extends State<HomePage> {
           markerSet.removeWhere((element) => element.markerId.value.contains("driver"));
         });
       }
+
+      if(status == "ended")
+      {
+        if((eventSnapshot.snapshot.value as Map)["fareAmount"] != null)
+        {
+          double fareAmount = double.parse((eventSnapshot.snapshot.value as Map)["fareAmount"].toString());
+
+          var responseFromPaymentDialog = await showDialog(
+              context: context,
+              builder: (BuildContext context) => PaymentDialog(fareAmount: fareAmount.toString()),
+          );
+
+          if(responseFromPaymentDialog == "paid")
+          {
+            tripRequestRef!.onDisconnect();
+            tripRequestRef = null;
+
+            tripStreamSubscription!.cancel();
+            tripStreamSubscription = null;
+
+            resetAppNow();
+
+            Restart.restartApp();
+          }
+        }
+      }
+
     });
   }
 
@@ -771,17 +801,17 @@ class _HomePageState extends State<HomePage> {
               ),
 
               //body
-              ListTile(
-                leading: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.info,
-                    color: Colors.grey,
+              GestureDetector(
+                onTap: ()
+                {
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=> const AboutPage()));
+                },
+                child: ListTile(
+                  leading: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.info, color: Colors.grey,),
                   ),
-                ),
-                title: const Text(
-                  "About",
-                  style: TextStyle(color: Colors.grey),
+                  title: const Text("About", style: TextStyle(color: Colors.grey),),
                 ),
               ),
 
@@ -790,7 +820,7 @@ class _HomePageState extends State<HomePage> {
                   FirebaseAuth.instance.signOut();
 
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (c) => AuthPage()));
+                      context, MaterialPageRoute(builder: (c) => const AuthPage()));
                 },
                 child: ListTile(
                   leading: IconButton(
