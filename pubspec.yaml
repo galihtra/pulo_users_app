@@ -51,9 +51,10 @@ dependencies:
   loading_animation_widget: null
   permission_handler: ^11.1.0
   provider: null
+  restart_app: null
   shimmer: ^3.0.0
+  url_launcher: ^6.2.2
   webview_flutter: ^4.2.4
-  restart_app: 
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
