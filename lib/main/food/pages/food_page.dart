@@ -340,12 +340,12 @@ class BigContainersFood extends StatelessWidget {
                                   Row(
                                     children: [
                                       const Icon(
-                                        Icons.alarm,
+                                        Icons.location_on,
                                         size: 16,
                                         color: ColorResources.black,
                                       ),
                                       Text(
-                                        BigCon[index].time,
+                                        "${BigCon[index].distance}m",
                                         style: const TextStyle(
                                             fontSize: 15,
                                             color: ColorResources.black),
