@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:users_app/main/food/models/bigcontainermodel.dart';
-import 'package:users_app/main/food/models/smallcontainermodel.dart';
 import 'package:users_app/main/food/utils/constant.dart';
+import 'package:users_app/main/mart/models/big_mart.dart';
+import 'package:users_app/main/mart/models/small_mart.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-class FoodDetails extends StatefulWidget {
-  final DistInfo details;
-  final DispInfo2 detail;
+class MartDetails extends StatefulWidget {
+  final SmallMart details;
+  final BigMart detail;
 
-  const FoodDetails({super.key, required this.details, required this.detail});
+  const MartDetails({super.key, required this.details, required this.detail});
 
   @override
-  State<FoodDetails> createState() => _FoodDetailsState();
+  State<MartDetails> createState() => _MartDetailsState();
 }
 
-class _FoodDetailsState extends State<FoodDetails> {
+class _MartDetailsState extends State<MartDetails> {
   int? _value = 1;
 
   @override

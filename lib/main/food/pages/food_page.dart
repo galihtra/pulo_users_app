@@ -185,7 +185,7 @@ class SmallContainers extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => DetailScreen(
+                    builder: ((context) => FoodDetails(
                           details: smallcon[index],
                           detail: BigCon[index],
                         )),
@@ -285,7 +285,7 @@ class BigContainersFood extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => DetailScreen(
+                        builder: ((context) => FoodDetails(
                               details: smallcon[index],
                               detail: BigCon[index],
                             )),
