@@ -30,6 +30,7 @@ import '../appInfo/app_info.dart';
 import '../main/auth/auth_page.dart';
 import '../widgets/loading_dialog.dart';
 import '../widgets/payment_dialog.dart';
+import 'trips_history_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -801,6 +802,21 @@ class _HomePageState extends State<HomePage> {
               ),
 
               //body
+
+              GestureDetector(
+                onTap: ()
+                {
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=> const TripsHistoryPage()));
+                },
+                child: ListTile(
+                  leading: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.history, color: Colors.grey,),
+                  ),
+                  title: const Text("History", style: TextStyle(color: Colors.grey),),
+                ),
+              ),
+
               GestureDetector(
                 onTap: ()
                 {
