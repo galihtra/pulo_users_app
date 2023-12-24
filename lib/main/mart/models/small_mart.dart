@@ -19,159 +19,91 @@ class SmallMart {
 
 List smallConMart = [
   SmallMart(
-      description:
-          "A veggie burger is a hamburger patty that does not contain meat. It may be made from ingredients like beans.",
-      discountPrice: "\$${8}",
-      name: "Burger",
-      price: "\$${10}",
-      name2: " Vegetarian Burger",
+      description: "This is mineral water",
+      discountPrice: "\$${10}",
+      price: "\$${11}",
+      name2: "Mineral Water0",
+      name: "Mineral Water",
       ratting: " 9.1 Perfect (125)",
       image:
-          "https://propakistani.pk/wp-content/uploads/2022/04/front-view-tasty-meat-burger-wit.jpg"),
+          "https://img.freepik.com/free-photo/empty-water-bottle_144627-6023.jpg"),
   SmallMart(
-      description:
-          "A veggie pizza  roasted red peppers, baby spinach, onions, mushrooms, tomatoes, and black olives.",
-      discountPrice: "\$${10}",
-      price: "\$${12}",
-      name: "Pizza",
-      name2: " Vegetarian Pizaa",
-      ratting: " 8.1 Good (122)",
-      image: "https://static.toiimg.com/photo/msid-87930581/87930581.jpg"),
-  SmallMart(
-      description:
-          "sushi, a staple rice dish of Japanese cuisine, consisting of cooked rice flavoured with vinegar.",
+      description: "This is Vitamin",
       discountPrice: "\$${9}",
-      price: "\$${11}",
-      name: "Sushi",
-      name2: "Sushii",
+      price: "\$${10}",
+      name2: "Vitamin1",
+      name: "Vitamins",
+      ratting: " 8.1 Good (122)",
+      image:
+          "https://img.freepik.com/free-photo/brain-booster-pills-container-still-life_23-2150760052.jpg"),
+  SmallMart(
+      description: "This is a chips",
+      discountPrice: "\$${4}",
+      price: "\$${10}",
+      name2: "Chips3",
+      name: "Chips",
       ratting: " 8.3 Good (123)",
       image:
-          "https://i0.wp.com/bamboounion.pk/wp-content/uploads/2022/02/best-sushi-restaurant-in-Lahore.jpg?fit=1183%2C756&ssl=1"),
+          "https://img.freepik.com/free-vector/chips-package-concept_1284-35832.jpg"),
   SmallMart(
-      name: "Salad",
-      description:
-          "Try starting with romaine lettuce, a cheese they like, then move to their favorite vegetable, and dressing. ",
-      discountPrice: "\$${8}",
+      description: "This is Soft Drink",
+      discountPrice: "\$${5}",
+      price: "\$${12}",
+      name2: "Soft Drink4",
+      name: "Soft Drink",
+      ratting: " 8.4 Very Good (124)",
+      image: "https://img.freepik.com/free-vector/tin-mockup_1017-8606.jpg"),
+  SmallMart(
+      description: "This is juice apple",
+      discountPrice: "\$${6}",
+      price: "\$${11}",
+      name2: "Juice",
+      name: "Juice",
+      ratting: " 9.11 Perfect (128)",
+      image:
+          "https://img.freepik.com/free-vector/green-apple-juice-drink-product-ad_52683-34033.jpg"),
+  SmallMart(
+      description: "This is Soft Drink",
+      discountPrice: "\$${5}",
+      price: "\$${12}",
+      name2: "Soft Drink4",
+      name: "Soft Drink",
+      ratting: " 8.4 Very Good (124)",
+      image: "https://img.freepik.com/free-vector/tin-mockup_1017-8606.jpg"),
+  SmallMart(
+      description: "This is juice apple",
+      discountPrice: "\$${6}",
+      price: "\$${11}",
+      name2: "Juice",
+      name: "Juice",
+      ratting: " 9.11 Perfect (128)",
+      image:
+          "https://img.freepik.com/free-vector/green-apple-juice-drink-product-ad_52683-34033.jpg"),
+  SmallMart(
+      description: "This is Vitamin",
+      discountPrice: "\$${9}",
       price: "\$${10}",
-      name2: " Vegetarian Salaad",
+      name2: "Vitamin1",
+      name: "Vitamins",
       ratting: " 8.1 Good (122)",
       image:
-          "https://www.momontimeout.com/wp-content/uploads/2021/08/snickers-apple-salad-square.jpeg"),
+          "https://img.freepik.com/free-photo/brain-booster-pills-container-still-life_23-2150760052.jpg"),
   SmallMart(
-      description:
-          "A veggie burger is a hamburger patty that does not contain meat. It may be made from ingredients like beans.",
-      discountPrice: "\$${8}",
-      name: "Burger",
-      price: "\$${10}",
-      name2: " Vegetarian Burger",
+      description: "This is mineral water",
+      discountPrice: "\$${10}",
+      price: "\$${11}",
+      name2: "Mineral Water0",
+      name: "Mineral Water",
       ratting: " 9.1 Perfect (125)",
       image:
-          "https://propakistani.pk/wp-content/uploads/2022/04/front-view-tasty-meat-burger-wit.jpg"),
+          "https://img.freepik.com/free-photo/empty-water-bottle_144627-6023.jpg"),
   SmallMart(
-      description:
-          "A veggie pizza  roasted red peppers, baby spinach, onions, mushrooms, tomatoes, and black olives.",
-      discountPrice: "\$${10}",
-      price: "\$${12}",
-      name: "Pizza",
-      name2: " Vegetarian Pizaa",
-      ratting: " 8.1 Good (122)",
-      image: "https://static.toiimg.com/photo/msid-87930581/87930581.jpg"),
-  SmallMart(
-      description:
-          "sushi, a staple rice dish of Japanese cuisine, consisting of cooked rice flavoured with vinegar.",
-      discountPrice: "\$${9}",
-      price: "\$${11}",
-      name: "Sushi",
-      name2: "Sushii",
+      description: "This is a chips",
+      discountPrice: "\$${4}",
+      price: "\$${10}",
+      name2: "Chips3",
+      name: "Chips",
       ratting: " 8.3 Good (123)",
       image:
-          "https://i0.wp.com/bamboounion.pk/wp-content/uploads/2022/02/best-sushi-restaurant-in-Lahore.jpg?fit=1183%2C756&ssl=1"),
-  SmallMart(
-      name: "Salad",
-      description:
-          "Try starting with romaine lettuce, a cheese they like, then move to their favorite vegetable, and dressing. ",
-      discountPrice: "\$${8}",
-      price: "\$${10}",
-      name2: " Vegetarian Salaad",
-      ratting: " 8.1 Good (122)",
-      image:
-          "https://www.momontimeout.com/wp-content/uploads/2021/08/snickers-apple-salad-square.jpeg"),
-  SmallMart(
-      description:
-          "A veggie burger is a hamburger patty that does not contain meat. It may be made from ingredients like beans.",
-      discountPrice: "\$${8}",
-      name: "Burger",
-      price: "\$${10}",
-      name2: " Vegetarian Burger",
-      ratting: " 9.1 Perfect (125)",
-      image:
-          "https://propakistani.pk/wp-content/uploads/2022/04/front-view-tasty-meat-burger-wit.jpg"),
-  SmallMart(
-      description:
-          "A veggie pizza  roasted red peppers, baby spinach, onions, mushrooms, tomatoes, and black olives.",
-      discountPrice: "\$${10}",
-      price: "\$${12}",
-      name: "Pizza",
-      name2: " Vegetarian Pizaa",
-      ratting: " 8.1 Good (122)",
-      image: "https://static.toiimg.com/photo/msid-87930581/87930581.jpg"),
-  SmallMart(
-      description:
-          "sushi, a staple rice dish of Japanese cuisine, consisting of cooked rice flavoured with vinegar.",
-      discountPrice: "\$${9}",
-      price: "\$${11}",
-      name: "Sushi",
-      name2: "Sushii",
-      ratting: " 8.3 Good (123)",
-      image:
-          "https://i0.wp.com/bamboounion.pk/wp-content/uploads/2022/02/best-sushi-restaurant-in-Lahore.jpg?fit=1183%2C756&ssl=1"),
-  SmallMart(
-      name: "Salad",
-      description:
-          "Try starting with romaine lettuce, a cheese they like, then move to their favorite vegetable, and dressing. ",
-      discountPrice: "\$${8}",
-      price: "\$${10}",
-      name2: " Vegetarian Salaad",
-      ratting: " 8.1 Good (122)",
-      image:
-          "https://www.momontimeout.com/wp-content/uploads/2021/08/snickers-apple-salad-square.jpeg"),
-  SmallMart(
-      description:
-          "A veggie burger is a hamburger patty that does not contain meat. It may be made from ingredients like beans.",
-      discountPrice: "\$${8}",
-      name: "Burger",
-      price: "\$${10}",
-      name2: " Vegetarian Burger",
-      ratting: " 9.1 Perfect (125)",
-      image:
-          "https://propakistani.pk/wp-content/uploads/2022/04/front-view-tasty-meat-burger-wit.jpg"),
-  SmallMart(
-      description:
-          "A veggie pizza  roasted red peppers, baby spinach, onions, mushrooms, tomatoes, and black olives.",
-      discountPrice: "\$${10}",
-      price: "\$${12}",
-      name: "Pizza",
-      name2: " Vegetarian Pizaa",
-      ratting: " 8.1 Good (122)",
-      image: "https://static.toiimg.com/photo/msid-87930581/87930581.jpg"),
-  SmallMart(
-      description:
-          "sushi, a staple rice dish of Japanese cuisine, consisting of cooked rice flavoured with vinegar.",
-      discountPrice: "\$${9}",
-      price: "\$${11}",
-      name: "Sushi",
-      name2: "Sushii",
-      ratting: " 8.3 Good (123)",
-      image:
-          "https://i0.wp.com/bamboounion.pk/wp-content/uploads/2022/02/best-sushi-restaurant-in-Lahore.jpg?fit=1183%2C756&ssl=1"),
-  SmallMart(
-      name: "Salad",
-      description:
-          "Try starting with romaine lettuce, a cheese they like, then move to their favorite vegetable, and dressing. ",
-      discountPrice: "\$${8}",
-      price: "\$${10}",
-      name2: " Vegetarian Salaad",
-      ratting: " 8.1 Good (122)",
-      image:
-          "https://www.momontimeout.com/wp-content/uploads/2021/08/snickers-apple-salad-square.jpeg"),
+          "https://img.freepik.com/free-vector/chips-package-concept_1284-35832.jpg"),
 ];

@@ -170,18 +170,16 @@ class SmallContainers extends StatelessWidget {
     return SizedBox(
       height: screenSize.height * 0.3,
       child: ListView(
-        // shrinkWrap: true,
-        // physics: const ScrollPhysics(),
+        shrinkWrap: true,
+        physics: const ScrollPhysics(),
         scrollDirection: Axis.horizontal,
         children: [
           SizedBox(
-            width: screenSize.width * 2,
+            width: screenSize.width * 1.98,
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 8,
-                childAspectRatio: 0.8,
-                // mainAxisSpacing: 13.0,
-                // crossAxisSpacing: 10.0
+                crossAxisCount: 5,
+                childAspectRatio: 1.3,
               ),
               itemCount: smallConMart.length,
               itemBuilder: ((context, index) {
@@ -194,7 +192,6 @@ class SmallContainers extends StatelessWidget {
                         MaterialPageRoute(
                           builder: ((context) => MartDetails(
                                 details: smallConMart[index],
-                                detail: bigConMart[index],
                               )),
                         ),
                       );
@@ -223,7 +220,7 @@ class SmallContainers extends StatelessWidget {
                               width: screenSize.width * 0.2,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fill,
                                       image: NetworkImage(
                                           smallConMart[index].image)),
                                   shape: BoxShape.circle),
@@ -312,7 +309,6 @@ class bigConMarttainersMart extends StatelessWidget {
                       MaterialPageRoute(
                         builder: ((context) => MartDetails(
                               details: smallConMart[index],
-                              detail: bigConMart[index],
                             )),
                       ),
                     );
@@ -338,7 +334,7 @@ class bigConMarttainersMart extends StatelessWidget {
                           width: screenSize.width * 0.65,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                               image: NetworkImage(bigConMart[index].image),
                             ),
                             borderRadius: const BorderRadius.only(

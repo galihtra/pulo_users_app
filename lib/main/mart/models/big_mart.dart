@@ -1,38 +1,28 @@
 class BigMart {
   String name;
   String image;
-  String time;
   String ratting;
-  BigMart(
-      {required this.name,
-      required this.ratting,
-      required this.time,
-      required this.image});
+  BigMart({required this.name, required this.ratting, required this.image});
 }
 
 List bigConMart = [
   BigMart(
-      name: "BurgerLab",
+      name: "Mineral Water",
       ratting: " 9.1 Perfect (125)",
-      time: " 15-25 min",
       image:
-          "https://media.istockphoto.com/id/1227215701/photo/combo-set-of-fast-food-juicy-hamburger-french-fries-chicken-legs-and-sauce-served-wooden.jpg?s=170667a&w=0&k=20&c=aUitEl-IvnoLrW3zwuWr0o_N9-2FtA1EJhGRVeBrtqY="),
+          "https://img.freepik.com/free-photo/empty-water-bottle_144627-6023.jpg"),
   BigMart(
-      name: "Pizzzzza",
+      name: "Vitamins",
       ratting: " 8.1 Good (122)",
-      time: " 15-23 min",
       image:
-          "https://media02.stockfood.com/largepreviews/NDE4Mjc5OTkz/13492903-Gluten-free-Pizza-Margherita-cut-into-pieces.jpg"),
+          "https://img.freepik.com/free-photo/brain-booster-pills-container-still-life_23-2150760052.jpg"),
   BigMart(
-      name: "Sushii",
+      name: "Chips",
       ratting: " 8.3 Good (123)",
-      time: " 13-23 min",
       image:
-          "https://fusedbyfionauyema.com/wp-content/uploads/2021/02/Fused-by-Fiona-Uyema-Sushi-Q-A-how-to-make-sushi-at-home.jpg"),
+          "https://img.freepik.com/free-vector/chips-package-concept_1284-35832.jpg"),
   BigMart(
-      name: "Salaaad",
+      name: "Soft Drink",
       ratting: " 8.4 Very Good (124)",
-      time: " 12-25 min",
-      image:
-          "https://www.kitchensanctuary.com/wp-content/uploads/2021/06/Simple-Green-Salad-with-Vinaigrette-Square-FS-3241.jpg"),
+      image: "https://img.freepik.com/free-vector/tin-mockup_1017-8606.jpg"),
 ];
