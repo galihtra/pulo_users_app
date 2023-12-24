@@ -6,14 +6,14 @@ import 'package:users_app/main/mart/pages/mart_details.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-class MartPage extends StatefulWidget {
-  const MartPage({super.key});
+class PasarPage extends StatefulWidget {
+  const PasarPage({super.key});
 
   @override
-  State<MartPage> createState() => _MartPageState();
+  State<PasarPage> createState() => _PasarPageState();
 }
 
-class _MartPageState extends State<MartPage> {
+class _PasarPageState extends State<PasarPage> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
@@ -203,7 +203,7 @@ class SmallContainers extends StatelessWidget {
                           width: screenSize.width * 0.22,
                           // height: screenSize.height * 0.22,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(80),
+                            borderRadius: BorderRadius.circular(30),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
@@ -220,9 +220,10 @@ class SmallContainers extends StatelessWidget {
                               width: screenSize.width * 0.2,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(
-                                          smallConMart[index].image)),
+                                    fit: BoxFit.fill,
+                                    image:
+                                        NetworkImage(smallConMart[index].image),
+                                  ),
                                   shape: BoxShape.circle),
                             ),
                           ),
