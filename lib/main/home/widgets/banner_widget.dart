@@ -46,6 +46,12 @@ class _BannerWidgetState extends State<BannerWidget> {
                         child: FadeInImage.assetNetwork(
                           placeholder: Images.placeholder,
                           fit: BoxFit.cover,
+
+                          //
+                          // MASALAH NYA DISINI
+                          // The following ArgumentError was thrown resolving an image codec:
+                          // Invalid argument(s): No host specified in URI file:///
+                          //
                           image: '',
                           imageErrorBuilder: (c, o, s) => Image.asset(
                             Images.banner,
