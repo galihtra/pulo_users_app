@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:users_app/pages/home_page.dart';
+import 'package:users_app/rider/pages/home_page_rider.dart';
 
 import '../../../models/gojek_icon.dart';
 import '../../../utils/icons.dart';
@@ -48,6 +49,10 @@ class MenusWidget extends StatelessWidget {
     // Navigate to different pages based on the clicked menu item
     switch (icon.icon) {
       case 'MOTOR':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (c) => const HomePageRider()),
+        );
         break;
       case 'MOBIL':
         Navigator.push(
