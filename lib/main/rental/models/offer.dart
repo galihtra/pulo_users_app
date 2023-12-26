@@ -10,17 +10,17 @@ class Offer {
   });
 }
 
-List offerItems = [
+List offerRentalItems = [
   Offer(
-      title: "Absolutely\n  Fresh",
+      title: "Safe and reliable\nrental vehicles",
       image:
-          "https://res.akamaized.net/domain/image/fetch/t_web/https://static.domain.com.au/twr/production/uploads/content-watched/818292_Large.jpg",
+          "https://img.freepik.com/free-photo/young-woman-choosing-car-herself_1303-28033.jpg?w=740&t=st=1703429461~exp=1703430061~hmac=010b5a3874bc235fe849e703df3ff20bd801af3f7d29313476905ab5d825fb5a",
       backgroundImage:
-          "https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?"),
+          "https://img.freepik.com/free-photo/young-family-with-kids-travelling-by-car-stopped-field_1303-22458.jpg?w=740&t=st=1703428027~exp=1703428627~hmac=491f06e4b92972d842e5a7d9cf7f2c410f77806af0716b521f938df5606aa9ab"),
   Offer(
-      title: "Fulfill your\nneeds",
+      title: "Book rental\nvehicles easily",
       image:
-          "https://o-cdn-cas.sirclocdn.com/parenting/images/ezgif.com-webp-to-jpg_1_qZc8bNP.width-800.format-webp.webp",
+          "https://img.freepik.com/free-photo/smiling-senior-mother-giving-keys-daughter_1262-2324.jpg?w=740&t=st=1703427951~exp=1703428551~hmac=fbaf3cf0cee02196e5f038d19dfa62f415f7748f23e5ea8c54f72245bf391075",
       backgroundImage:
-          "https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?"),
+          "https://img.freepik.com/free-photo/young-family-with-kids-travelling-by-car-stopped-field_1303-22458.jpg?w=740&t=st=1703428027~exp=1703428627~hmac=491f06e4b92972d842e5a7d9cf7f2c410f77806af0716b521f938df5606aa9ab"),
 ];

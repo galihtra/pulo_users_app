@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:users_app/main/pasar/models/offer.dart';
-import 'package:users_app/main/pasar/models/second_offer.dart';
-import 'package:users_app/main/pasar/models/small_pasar.dart';
+import 'package:users_app/main/rental/models/offer.dart';
+import 'package:users_app/main/rental/models/small_rental.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/main/mart/pages/mart_details.dart';
 import 'package:users_app/utils/color_resources.dart';
@@ -23,63 +21,45 @@ class _PasarPageState extends State<RentalPage> {
       backgroundColor: ColorResources.getHomeBg(context),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12, top: 25),
-                child: CostumAppBarMart(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.015,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: SearchBoxMart(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: const firstOffer(),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.025,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: offerContainer(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.020,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: const CategoryTitle(),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: SmallContainers(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: const SecondOfferTitle(),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              SecondOffer(screenSize: screenSize),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12, top: 25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CostumAppBarMart(screenSize: screenSize),
+                SizedBox(
+                  height: screenSize.height * 0.015,
+                ),
+                SearchBoxMart(screenSize: screenSize),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                const firstOffer(),
+                SizedBox(
+                  height: screenSize.height * 0.025,
+                ),
+                offerContainer(screenSize: screenSize),
+                SizedBox(
+                  height: screenSize.height * 0.020,
+                ),
+                const CategoryTitle(),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                SmallContainers(screenSize: screenSize),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                const SecondOfferTitle(),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                SecondOffer(screenSize: screenSize),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -107,28 +87,28 @@ class CostumAppBarMart extends StatelessWidget {
             color: ColorResources.black,
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Deliver to",
-              style: TextStyle(
-                  color: ColorResources.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: screenSize.height * 0.002,
-            ),
-            Text(
-              "02-075 Konstructorska 9",
-              style: TextStyle(
-                color: blue1,
-                fontSize: 15,
-              ),
-            ),
-          ],
-        ),
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     const Text(
+        //       "Deliver to",
+        //       style: TextStyle(
+        //           color: ColorResources.black,
+        //           fontSize: 17,
+        //           fontWeight: FontWeight.w500),
+        //     ),
+        //     SizedBox(
+        //       height: screenSize.height * 0.002,
+        //     ),
+        //     Text(
+        //       "02-075 Konstructorska 9",
+        //       style: TextStyle(
+        //         color: blue1,
+        //         fontSize: 15,
+        //       ),
+        //     ),
+        //   ],
+        // ),
         const Expanded(child: SizedBox()),
         Container(
           height: screenSize.height * 0.065,
@@ -168,7 +148,7 @@ class SearchBoxMart extends StatelessWidget {
                 Icons.search,
                 color: blue1,
               ),
-              hintText: "Find fresh products here",
+              hintText: "Discover your ideal car or motorcycle",
               hintStyle: const TextStyle(color: Colors.black54),
               fillColor: Colors.white70,
               filled: true,
@@ -199,68 +179,57 @@ class SmallContainers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenSize.height * 0.3,
-      child: ListView(
+      height: screenSize.height * 0.15,
+      child: ListView.builder(
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        children: [
-          SizedBox(
-            width: screenSize.width * 1.98,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                childAspectRatio: 1.3,
-              ),
-              itemCount: smallPasarItems.length,
-              itemBuilder: ((context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: InkWell(
-                    onTap: (() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => MartDetails(
-                                details: smallPasarItems[index],
-                              )),
-                        ),
-                      );
-                    }),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          height: screenSize.height * 0.1,
-                          width: screenSize.width * 0.22,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(smallPasarItems[index].image),
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 0.8,
-                                color: blue1,
-                                offset: Offset(0.0, 0.5),
-                              )
-                            ],
-                          ),
-                        ),
-                        Text(
-                          smallPasarItems[index].name,
-                          style: TextStyle(color: ColorResources.black),
+        itemCount: smallRentalItems.length,
+        itemBuilder: ((context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: InkWell(
+              onTap: (() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => MartDetails(
+                          details: smallRentalItems[index],
+                        )),
+                  ),
+                );
+              }),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: screenSize.height * 0.1,
+                    width: screenSize.width * 0.22,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(smallRentalItems[index].image),
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 0.8,
+                          color: blue1,
+                          offset: Offset(0.0, 0.5),
                         )
                       ],
                     ),
                   ),
-                );
-              }),
+                  Text(
+                    smallRentalItems[index].name,
+                    style: TextStyle(color: ColorResources.black),
+                  )
+                ],
+              ),
             ),
-          )
-        ],
+          );
+        }),
       ),
     );
   }
@@ -274,7 +243,7 @@ class CategoryTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      "Choose from the categories",
+      "Rental Categories",
       style: TextStyle(
         fontWeight: FontWeight.w500,
         color: ColorResources.black,
@@ -310,7 +279,7 @@ class firstOffer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      "Our gift to you",
+      "Our best offer",
       style: TextStyle(
         fontWeight: FontWeight.w500,
         color: ColorResources.black,
@@ -336,7 +305,7 @@ class offerContainer extends StatelessWidget {
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: offerItems.length,
+        itemCount: offerRentalItems.length,
         itemBuilder: ((context, index) {
           return Padding(
             padding: const EdgeInsets.all(7.0),
@@ -349,10 +318,10 @@ class offerContainer extends StatelessWidget {
                     width: screenSize.width * 0.9,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         opacity: 0.6,
                         image: NetworkImage(
-                          offerItems[index].backgroundImage,
+                          offerRentalItems[index].backgroundImage,
                         ),
                       ),
                       borderRadius: BorderRadius.circular(15),
@@ -360,11 +329,12 @@ class offerContainer extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          width: screenSize.width * 0.6,
+                          width: screenSize.width * 0.47,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(offerItems[index].image),
+                              image:
+                                  NetworkImage(offerRentalItems[index].image),
                             ),
                             borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(60),
@@ -375,7 +345,7 @@ class offerContainer extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(25.0, 0, 0, 0),
                           child: Text(
-                            offerItems[index].title,
+                            offerRentalItems[index].title,
                             style: TextStyle(
                               color: blue1,
                               fontSize: 18,
@@ -407,110 +377,104 @@ class SecondOffer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: screenSize.height * 0.367,
-      child: Container(
-        color: blue1,
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: allProductPasarItems.length,
-          itemBuilder: ((context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(7.0),
-              child: Stack(
-                children: [
-                  InkWell(
-                    onTap: (() {}),
-                    child: Container(
-                      width: screenSize.width * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: ColorResources.white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 0.8,
-                            color: blue1,
-                            offset: Offset(0.0, 0.5),
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: screenSize.height * 0.19,
-                            width: screenSize.width * 0.65,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image:
-                                    NetworkImage(smallPasarItems[index].image),
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  smallPasarItems[index].name,
-                                  style: TextStyle(
-                                      color: blue1,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: screenSize.height * 0.005,
-                                ),
-                                Text(
-                                  allProductPasarItems[index].discountPrice,
-                                  style: const TextStyle(
-                                      fontSize: 18.5,
-                                      color: ColorResources.black,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: screenSize.height * 0.009,
-                                ),
-                                Text(
-                                  allProductPasarItems[index].price,
-                                  style: const TextStyle(
-                                    fontSize: 10.0,
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const ScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      itemCount: smallRentalItems.length,
+      itemBuilder: ((context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(7.0),
+          child: Stack(
+            children: [
+              InkWell(
+                onTap: (() {}),
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  width: screenSize.width * 1,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: ColorResources.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 0.8,
+                        color: blue1,
+                        offset: Offset(0.0, 0.5),
+                      )
+                    ],
                   ),
-                  const Positioned(
-                    right: 0,
-                    child: Padding(
-                        padding: EdgeInsets.all(6.0),
-                        child: Icon(
-                          Icons.favorite_rounded,
-                          size: 25,
-                          color: ColorResources.white,
-                        )),
-                  )
-                ],
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: screenSize.height * 0.20,
+                        width: screenSize.width * 0.40,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(smallRentalItems[index].image),
+                          ),
+                          // borderRadius: const BorderRadius.only(
+                          //   topLeft: Radius.circular(15),
+                          //   topRight: Radius.circular(15),
+                          // ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              smallRentalItems[index].name,
+                              style: TextStyle(
+                                  color: blue1,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: screenSize.height * 0.005,
+                            ),
+                            Text(
+                              smallRentalItems[index].discountPrice,
+                              style: const TextStyle(
+                                  fontSize: 18.5,
+                                  color: ColorResources.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: screenSize.height * 0.009,
+                            ),
+                            Text(
+                              smallRentalItems[index].price,
+                              style: const TextStyle(
+                                fontSize: 10.0,
+                                color: Colors.black45,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            );
-          }),
-        ),
-      ),
+              const Positioned(
+                right: 0,
+                child: Padding(
+                    padding: EdgeInsets.all(6.0),
+                    child: Icon(
+                      Icons.favorite_rounded,
+                      size: 25,
+                      color: ColorResources.white,
+                    )),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }

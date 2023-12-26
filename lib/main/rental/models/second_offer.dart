@@ -17,7 +17,7 @@ class SecondOffer {
   });
 }
 
-List allProductPasarItems = [
+List secondOfferRental = [
   SecondOffer(
       description:
           "A veggie burger is a hamburger patty that does not contain meat. It may be made from ingredients like beans.",
