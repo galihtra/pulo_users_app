@@ -6,6 +6,7 @@ import 'package:users_app/main/rental/pages/rental_page.dart';
 import 'package:users_app/pages/home_page.dart';
 
 import '../../../models/gojek_icon.dart';
+import '../../../rider/pages/home_page_rider.dart';
 import '../../../utils/icons.dart';
 import '../../../utils/light_themes.dart';
 
@@ -52,6 +53,10 @@ class MenusWidget extends StatelessWidget {
     // Navigate to different pages based on the clicked menu item
     switch (icon.icon) {
       case 'MOTOR':
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (c) => const HomePageRider()),
+        );
         break;
       case 'MOBIL':
         Navigator.push(
@@ -94,3 +99,4 @@ class MenusWidget extends StatelessWidget {
     }
   }
 }
+
