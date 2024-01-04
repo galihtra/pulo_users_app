@@ -20,7 +20,7 @@ class FoodDetails extends StatefulWidget {
 }
 
 class _FoodDetailsState extends State<FoodDetails> {
-  int? _value = 1;
+  // int? _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -103,9 +103,9 @@ class _FoodDetailsState extends State<FoodDetails> {
                     SizedBox(
                       height: sc.height * 0.010,
                     ),
-                    Row(
+                    const Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.star,
                           color: Color(0xffFCD506),
                           size: 16,
@@ -113,7 +113,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         Text(
                           "9.2",
                           // widget.details.ratting,
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 12.5, color: ColorResources.black),
                         ),
                       ],
@@ -186,160 +186,160 @@ class _FoodDetailsState extends State<FoodDetails> {
                     SizedBox(
                       height: sc.height * 0.015,
                     ),
-                    const Text(
-                      "Choose Additive",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: ColorResources.black,
-                      ),
-                    ),
-                    SizedBox(
-                      height: sc.height * 0.01,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          height: sc.height * 0.080,
-                          width: sc.width * 0.15,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image:
-                                    AssetImage("assets/images/creamcheese.png"),
-                              ),
-                              color: Color(0xff3A3843),
-                              shape: BoxShape.circle),
-                        ),
-                        SizedBox(
-                          width: sc.width * 0.03,
-                        ),
-                        const Text(
-                          "Cream Cheese",
-                          style: TextStyle(
-                              color: ColorResources.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          width: sc.width * 0.22,
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              "\$${10}",
-                              style: TextStyle(
-                                  color: ColorResources.black, fontSize: 16),
-                            ),
-                            Radio(
-                                value: 1,
-                                groupValue: _value,
-                                onChanged: (int? value) {
-                                  setState(() {
-                                    _value = value!;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: sc.height * 0.015,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          height: sc.height * 0.080,
-                          width: sc.width * 0.15,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("assets/images/avocado.png"),
-                              ),
-                              color: Color(0xff3A3843),
-                              shape: BoxShape.circle),
-                        ),
-                        SizedBox(
-                          width: sc.width * 0.03,
-                        ),
-                        const Text(
-                          "Avocado",
-                          style: TextStyle(
-                              color: ColorResources.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          width: sc.width * 0.328,
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              "\$${11}",
-                              style: TextStyle(
-                                  color: ColorResources.black, fontSize: 16),
-                            ),
-                            Radio(
-                                value: 2,
-                                groupValue: _value,
-                                onChanged: (int? value) {
-                                  setState(() {
-                                    _value = value!;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: sc.height * 0.015,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          height: sc.height * 0.080,
-                          width: sc.width * 0.15,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tomato.png"),
-                              ),
-                              color: Color(0xff3A3843),
-                              shape: BoxShape.circle),
-                        ),
-                        SizedBox(
-                          width: sc.width * 0.0305,
-                        ),
-                        const Text(
-                          "Tomato",
-                          style: TextStyle(
-                              color: ColorResources.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          width: sc.width * 0.35,
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              "\$${13}",
-                              style: TextStyle(
-                                  color: ColorResources.black, fontSize: 16),
-                            ),
-                            Radio(
-                                value: 3,
-                                groupValue: _value,
-                                onChanged: (int? value) {
-                                  setState(() {
-                                    _value = value!;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
+                    // const Text(
+                    //   "Choose Additive",
+                    //   style: TextStyle(
+                    //     fontSize: 22,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: ColorResources.black,
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: sc.height * 0.01,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: sc.height * 0.080,
+                    //       width: sc.width * 0.15,
+                    //       decoration: const BoxDecoration(
+                    //           image: DecorationImage(
+                    //             fit: BoxFit.cover,
+                    //             image:
+                    //                 AssetImage("assets/images/creamcheese.png"),
+                    //           ),
+                    //           color: Color(0xff3A3843),
+                    //           shape: BoxShape.circle),
+                    //     ),
+                    //     SizedBox(
+                    //       width: sc.width * 0.03,
+                    //     ),
+                    //     const Text(
+                    //       "Cream Cheese",
+                    //       style: TextStyle(
+                    //           color: ColorResources.black,
+                    //           fontSize: 16,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //     SizedBox(
+                    //       width: sc.width * 0.22,
+                    //     ),
+                    //     Row(
+                    //       children: [
+                    //         const Text(
+                    //           "\$${10}",
+                    //           style: TextStyle(
+                    //               color: ColorResources.black, fontSize: 16),
+                    //         ),
+                    //         Radio(
+                    //             value: 1,
+                    //             groupValue: _value,
+                    //             onChanged: (int? value) {
+                    //               setState(() {
+                    //                 _value = value!;
+                    //               });
+                    //             }),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: sc.height * 0.015,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: sc.height * 0.080,
+                    //       width: sc.width * 0.15,
+                    //       decoration: const BoxDecoration(
+                    //           image: DecorationImage(
+                    //             fit: BoxFit.cover,
+                    //             image: AssetImage("assets/images/avocado.png"),
+                    //           ),
+                    //           color: Color(0xff3A3843),
+                    //           shape: BoxShape.circle),
+                    //     ),
+                    //     SizedBox(
+                    //       width: sc.width * 0.03,
+                    //     ),
+                    //     const Text(
+                    //       "Avocado",
+                    //       style: TextStyle(
+                    //           color: ColorResources.black,
+                    //           fontSize: 16,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //     SizedBox(
+                    //       width: sc.width * 0.328,
+                    //     ),
+                    //     Row(
+                    //       children: [
+                    //         const Text(
+                    //           "\$${11}",
+                    //           style: TextStyle(
+                    //               color: ColorResources.black, fontSize: 16),
+                    //         ),
+                    //         Radio(
+                    //             value: 2,
+                    //             groupValue: _value,
+                    //             onChanged: (int? value) {
+                    //               setState(() {
+                    //                 _value = value!;
+                    //               });
+                    //             }),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: sc.height * 0.015,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: sc.height * 0.080,
+                    //       width: sc.width * 0.15,
+                    //       decoration: const BoxDecoration(
+                    //           image: DecorationImage(
+                    //             fit: BoxFit.cover,
+                    //             image: NetworkImage(
+                    //                 "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tomato.png"),
+                    //           ),
+                    //           color: Color(0xff3A3843),
+                    //           shape: BoxShape.circle),
+                    //     ),
+                    //     SizedBox(
+                    //       width: sc.width * 0.0305,
+                    //     ),
+                    //     const Text(
+                    //       "Tomato",
+                    //       style: TextStyle(
+                    //           color: ColorResources.black,
+                    //           fontSize: 16,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //     SizedBox(
+                    //       width: sc.width * 0.35,
+                    //     ),
+                    //     Row(
+                    //       children: [
+                    //         const Text(
+                    //           "\$${13}",
+                    //           style: TextStyle(
+                    //               color: ColorResources.black, fontSize: 16),
+                    //         ),
+                    //         Radio(
+                    //             value: 3,
+                    //             groupValue: _value,
+                    //             onChanged: (int? value) {
+                    //               setState(() {
+                    //                 _value = value!;
+                    //               });
+                    //             }),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(
                       height: sc.height * 0.015,
                     ),

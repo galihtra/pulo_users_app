@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:users_app/main/pasar/models/offer.dart';
 import 'package:users_app/main/pasar/models/second_offer.dart';
