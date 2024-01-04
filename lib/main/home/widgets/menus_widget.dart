@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:users_app/courier/pages/home_page_courier.dart';
 import 'package:users_app/main/food/pages/food_page.dart';
 import 'package:users_app/main/mart/pages/mart_page.dart';
 import 'package:users_app/main/pasar/pages/pasar_page.dart';
@@ -62,6 +63,12 @@ class MenusWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (c) => const HomePage()),
+        );
+        break;
+      case 'PENGIRIMAN':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (c) => const HomePageCourier()),
         );
         break;
       case 'FOOD':
