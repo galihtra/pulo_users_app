@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:users_app/main/food/pages/food_page.dart';
-import 'package:users_app/main/mart/pages/mart_page.dart';
 import 'package:users_app/main/pasar/pages/pasar_page.dart';
 import 'package:users_app/main/rental/pages/rental_page.dart';
 import 'package:users_app/pages/home_page.dart';
@@ -68,10 +67,10 @@ class MenusWidget extends StatelessWidget {
         break;
       case 'MART':
         // Navigate to Mart page
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (c) => const MartPage()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (c) => const MartPage()),
+        // );
         break;
       case 'PASAR':
         // Navigate to Mart page

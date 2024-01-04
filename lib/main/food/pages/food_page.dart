@@ -1,10 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:users_app/main/food/models/bigcontainermodel.dart';
-import 'package:users_app/main/food/models/smallcontainermodel.dart';
 import 'package:users_app/main/food/pages/food_details.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
+
+import '../models/seller_products.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({super.key});
@@ -14,8 +15,38 @@ class FoodPage extends StatefulWidget {
 }
 
 class FoodPageState extends State<FoodPage> {
+  DatabaseReference items =
+      FirebaseDatabase.instance.ref().child("sellerItems");
+  void getDataOnce() async {
+    DataSnapshot itemsSnapshot =
+        // await items.get();
+        await items.orderByChild("productCategory").equalTo("food").get();
+
+    if (itemsSnapshot.exists) {
+      Map<dynamic, dynamic> itemsProduct = itemsSnapshot.value as Map;
+      itemsProduct.forEach((itemsKey, itemsData) {
+        sellerProducts.add(SellerProducts(
+          productId: itemsKey,
+          sellerId: itemsData["sellerId"],
+          productCategory: itemsData["productCategory"],
+          productDescription: itemsData["productDescription"],
+          productImage: itemsData["productImage"],
+          productName: itemsData["productName"],
+          productPrice: itemsData["productPrice"],
+          productStock: itemsData["productStock"],
+        ));
+      });
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (sellerProducts.isEmpty) {
+      setState(() {
+        getDataOnce();
+      });
+    }
     Size screenSize = Utils().getScreenSize();
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
@@ -100,7 +131,7 @@ class FoodPageState extends State<FoodPage> {
                 SizedBox(
                   height: screenSize.height * 0.027,
                 ),
-                SmallContainers(screenSize: screenSize),
+                smallContainers(screenSize),
                 SizedBox(
                   height: screenSize.height * 0.015,
                 ),
@@ -113,6 +144,78 @@ class FoodPageState extends State<FoodPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  SizedBox smallContainers(Size screenSize) {
+    return SizedBox(
+      height: screenSize.height * 0.185,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const ScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: sellerProducts.length,
+        itemBuilder: ((context, index) {
+          final product = sellerProducts[index];
+          return Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: InkWell(
+              onTap: (() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => FoodDetails(
+                          sellerProductsDetails: product,
+                          // details: smallcon[index],
+                          // detail: BigCon[index],
+                        )),
+                  ),
+                );
+              }),
+              child: Container(
+                width: screenSize.width * 0.22,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(55),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 0.8,
+                      color: blue1,
+                      offset: Offset(0.0, 0.5),
+                    )
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: screenSize.height * 0.1,
+                        width: screenSize.width * 0.2,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(product.productImage)),
+                            shape: BoxShape.circle),
+                      ),
+                      SizedBox(
+                        height: screenSize.height * 0.015,
+                      ),
+                      Text(
+                        product.productName,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          //fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
@@ -160,86 +263,6 @@ class SearchBoxFood extends StatelessWidget {
   }
 }
 
-class SmallContainers extends StatelessWidget {
-  const SmallContainers({
-    super.key,
-    required this.screenSize,
-  });
-
-  final Size screenSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: screenSize.height * 0.185,
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const ScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemCount: smallcon.length,
-        itemBuilder: ((context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: InkWell(
-              onTap: (() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => FoodDetails(
-                          details: smallcon[index],
-                          detail: BigCon[index],
-                        )),
-                  ),
-                );
-              }),
-              child: Container(
-                width: screenSize.width * 0.22,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(55),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 0.8,
-                      color: blue1,
-                      offset: Offset(0.0, 0.5),
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: screenSize.height * 0.1,
-                        width: screenSize.width * 0.2,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(smallcon[index].image)),
-                            shape: BoxShape.circle),
-                      ),
-                      SizedBox(
-                        height: screenSize.height * 0.015,
-                      ),
-                      Text(
-                        smallcon[index].name,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          //fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}
-
 class BigContainersTitle extends StatelessWidget {
   const BigContainersTitle({
     super.key,
@@ -274,8 +297,9 @@ class BigContainersFood extends StatelessWidget {
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: BigCon.length,
+        itemCount: sellerProducts.length,
         itemBuilder: ((context, index) {
+          final product = sellerProducts[index];
           return Padding(
             padding: const EdgeInsets.all(7.0),
             child: Stack(
@@ -286,8 +310,7 @@ class BigContainersFood extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: ((context) => FoodDetails(
-                              details: smallcon[index],
-                              detail: BigCon[index],
+                              sellerProductsDetails: product,
                             )),
                       ),
                     );
@@ -314,7 +337,7 @@ class BigContainersFood extends StatelessWidget {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(BigCon[index].image),
+                              image: NetworkImage(product.productImage),
                             ),
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(15),
@@ -331,7 +354,7 @@ class BigContainersFood extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    BigCon[index].name,
+                                    product.productName,
                                     style: TextStyle(
                                         color: blue1,
                                         fontSize: 17,
@@ -345,7 +368,7 @@ class BigContainersFood extends StatelessWidget {
                                         color: ColorResources.black,
                                       ),
                                       Text(
-                                        "${BigCon[index].distance}m",
+                                        "100m",
                                         style: const TextStyle(
                                             fontSize: 15,
                                             color: ColorResources.black),
@@ -365,7 +388,7 @@ class BigContainersFood extends StatelessWidget {
                                     size: 16,
                                   ),
                                   Text(
-                                    BigCon[index].ratting,
+                                    "9.2",
                                     style: const TextStyle(
                                         fontSize: 14.5,
                                         color: ColorResources.black),

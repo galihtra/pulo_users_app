@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:users_app/main/food/models/bigcontainermodel.dart';
-import 'package:users_app/main/food/models/smallcontainermodel.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-class FoodDetails extends StatefulWidget {
-  final DistInfo details;
-  final DispInfo2 detail;
+import '../models/seller_products.dart';
 
-  const FoodDetails({super.key, required this.details, required this.detail});
+class FoodDetails extends StatefulWidget {
+  final SellerProducts sellerProductsDetails;
+  // final DistInfo details;
+  // final DispInfo2 detail;
+
+  const FoodDetails({
+    super.key,
+    required this.sellerProductsDetails,
+  });
 
   @override
   State<FoodDetails> createState() => _FoodDetailsState();
@@ -36,7 +40,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(widget.detail.image),
+                        image: NetworkImage(
+                            widget.sellerProductsDetails.productImage),
                       ),
                     ),
                   ),
@@ -53,7 +58,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         child: Center(
                           child: GestureDetector(
                             onTap: () => Navigator.pop(context),
-                            child: Icon(Icons.arrow_back_rounded,
+                            child: const Icon(Icons.arrow_back_rounded,
                                 color: ColorResources.white),
                           ),
                         ),
@@ -70,7 +75,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: const Color(0xff757283)),
-                        child: Center(
+                        child: const Center(
                             child: Icon(
                           Icons.favorite_rounded,
                           color: ColorResources.white,
@@ -89,8 +94,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                       height: sc.height * 0.010,
                     ),
                     Text(
-                      widget.details.name2,
-                      style: TextStyle(
+                      widget.sellerProductsDetails.productName,
+                      style: const TextStyle(
                           fontSize: 21.5,
                           fontWeight: FontWeight.bold,
                           color: ColorResources.black),
@@ -106,8 +111,9 @@ class _FoodDetailsState extends State<FoodDetails> {
                           size: 16,
                         ),
                         Text(
-                          widget.details.ratting,
-                          style: TextStyle(
+                          "9.2",
+                          // widget.details.ratting,
+                          style: const TextStyle(
                               fontSize: 12.5, color: ColorResources.black),
                         ),
                       ],
@@ -119,8 +125,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.details.price,
-                          style: TextStyle(
+                          widget.sellerProductsDetails.productPrice,
+                          style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: ColorResources.black),
@@ -132,7 +138,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                               width: sc.width * 0.08,
                               decoration: BoxDecoration(
                                   color: blue2, shape: BoxShape.circle),
-                              child: Center(
+                              child: const Center(
                                 child: Icon(
                                   Icons.remove,
                                   color: ColorResources.white,
@@ -142,7 +148,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                             SizedBox(
                               width: sc.width * 0.04,
                             ),
-                            Text(
+                            const Text(
                               "1",
                               style: TextStyle(
                                 fontSize: 22,
@@ -157,7 +163,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                               width: sc.width * 0.08,
                               decoration: BoxDecoration(
                                   color: blue2, shape: BoxShape.circle),
-                              child: Center(
+                              child: const Center(
                                   child: Icon(
                                 Icons.add,
                                 color: ColorResources.white,
@@ -171,8 +177,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                       height: sc.height * 0.006,
                     ),
                     Text(
-                      widget.details.description,
-                      style: TextStyle(
+                      widget.sellerProductsDetails.productDescription,
+                      style: const TextStyle(
                         fontSize: 15,
                         color: ColorResources.black,
                       ),
@@ -180,7 +186,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                     SizedBox(
                       height: sc.height * 0.015,
                     ),
-                    Text(
+                    const Text(
                       "Choose Additive",
                       style: TextStyle(
                         fontSize: 22,
@@ -208,7 +214,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         SizedBox(
                           width: sc.width * 0.03,
                         ),
-                        Text(
+                        const Text(
                           "Cream Cheese",
                           style: TextStyle(
                               color: ColorResources.black,
@@ -220,7 +226,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "\$${10}",
                               style: TextStyle(
                                   color: ColorResources.black, fontSize: 16),
@@ -256,7 +262,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         SizedBox(
                           width: sc.width * 0.03,
                         ),
-                        Text(
+                        const Text(
                           "Avocado",
                           style: TextStyle(
                               color: ColorResources.black,
@@ -268,7 +274,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "\$${11}",
                               style: TextStyle(
                                   color: ColorResources.black, fontSize: 16),
@@ -305,7 +311,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         SizedBox(
                           width: sc.width * 0.0305,
                         ),
-                        Text(
+                        const Text(
                           "Tomato",
                           style: TextStyle(
                               color: ColorResources.black,
@@ -317,7 +323,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "\$${13}",
                               style: TextStyle(
                                   color: ColorResources.black, fontSize: 16),
@@ -345,7 +351,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                           color: blue2,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Add to card",
                             style: TextStyle(
