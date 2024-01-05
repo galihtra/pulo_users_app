@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:users_app/main/pasar/models/offer.dart';
 import 'package:users_app/main/pasar/models/small_pasar.dart';
 import 'package:users_app/main/pasar/pages/pasar_details.dart';
@@ -182,7 +183,11 @@ class _PasarPageState extends State<PasarPage> {
                                   height: screenSize.height * 0.005,
                                 ),
                                 Text(
-                                  product.productPrice,
+                                  NumberFormat.currency(
+                                          locale: 'id',
+                                          symbol: 'Rp ',
+                                          decimalDigits: 0)
+                                      .format(product.productPrice),
                                   style: const TextStyle(
                                       fontSize: 18.5,
                                       color: ColorResources.black,
@@ -192,7 +197,7 @@ class _PasarPageState extends State<PasarPage> {
                                   height: screenSize.height * 0.009,
                                 ),
                                 Text(
-                                  "10.000",
+                                  "Rp 10.000",
                                   style: const TextStyle(
                                     fontSize: 10.0,
                                     color: Colors.black45,
