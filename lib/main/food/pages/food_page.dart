@@ -73,7 +73,10 @@ class FoodPageState extends State<FoodPage> {
                               )
                             ]),
                         child: IconButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () {
+                            sellerProducts.clear();
+                            Navigator.pop(context);
+                          },
                           icon: const Icon(
                             Icons.clear_rounded,
                             color: ColorResources.black,
@@ -182,7 +185,7 @@ class FoodPageState extends State<FoodPage> {
                     BoxShadow(
                       blurRadius: 0.8,
                       color: blue1,
-                      offset: Offset(0.0, 0.5),
+                      offset: const Offset(0.0, 0.5),
                     )
                   ],
                 ),
@@ -235,16 +238,17 @@ class SearchBoxFood extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          height: screenSize.height * 0.065,
+          height: screenSize.height * 0.058,
           width: screenSize.width * 0.938,
           child: TextFormField(
+            cursorColor: Colors.black,
             decoration: InputDecoration(
-              prefixIcon: Icon(
+              prefixIcon: const Icon(
                 Icons.search,
-                color: blue1,
+                color: Colors.black54,
               ),
               hintText: "Find for restaurant or food...",
-              hintStyle: const TextStyle(color: Colors.black54),
+              hintStyle: const TextStyle(color: Colors.black54, height: 4.3),
               fillColor: Colors.white70,
               filled: true,
               enabledBorder: OutlineInputBorder(
@@ -324,7 +328,7 @@ class BigContainersFood extends StatelessWidget {
                         BoxShadow(
                           blurRadius: 0.8,
                           color: blue1,
-                          offset: Offset(0.0, 0.5),
+                          offset: const Offset(0.0, 0.5),
                         )
                       ],
                     ),
@@ -360,16 +364,16 @@ class BigContainersFood extends StatelessWidget {
                                         fontSize: 17,
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  Row(
+                                  const Row(
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         Icons.location_on,
                                         size: 16,
                                         color: ColorResources.black,
                                       ),
                                       Text(
                                         "100m",
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                             fontSize: 15,
                                             color: ColorResources.black),
                                       ),
@@ -380,16 +384,16 @@ class BigContainersFood extends StatelessWidget {
                               SizedBox(
                                 height: screenSize.height * 0.005,
                               ),
-                              Row(
+                              const Row(
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.star,
                                     color: Color(0xffFCD506),
                                     size: 16,
                                   ),
                                   Text(
                                     "9.2",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 14.5,
                                         color: ColorResources.black),
                                   ),

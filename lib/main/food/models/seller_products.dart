@@ -1,12 +1,12 @@
 class SellerProducts {
-  String productId = "";
-  String sellerId = "";
-  String productCategory = "";
-  String productDescription = "";
-  String productImage = "";
-  String productName = "";
-  String productPrice = "";
-  String productStock = "";
+  String productId;
+  String sellerId;
+  String productCategory;
+  String productDescription;
+  String productImage;
+  String productName;
+  String productPrice;
+  String productStock;
 
   SellerProducts({
     this.productId = "",

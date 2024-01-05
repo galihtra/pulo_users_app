@@ -1,11 +1,13 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:users_app/main/pasar/models/offer.dart';
-import 'package:users_app/main/pasar/models/second_offer.dart';
 import 'package:users_app/main/pasar/models/small_pasar.dart';
+import 'package:users_app/main/pasar/pages/pasar_details.dart';
 import 'package:users_app/utils/constant.dart';
-import 'package:users_app/main/mart/pages/mart_details.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
+
+import '../../food/models/seller_products.dart';
 
 class PasarPage extends StatefulWidget {
   const PasarPage({super.key});
@@ -15,8 +17,38 @@ class PasarPage extends StatefulWidget {
 }
 
 class _PasarPageState extends State<PasarPage> {
+  DatabaseReference items =
+      FirebaseDatabase.instance.ref().child("sellerItems");
+  void getDataOnce() async {
+    DataSnapshot itemsSnapshot =
+        // await items.get();
+        await items.orderByChild("productCategory").equalTo("pasar").get();
+
+    if (itemsSnapshot.exists) {
+      Map<dynamic, dynamic> itemsProduct = itemsSnapshot.value as Map;
+      itemsProduct.forEach((itemsKey, itemsData) {
+        sellerProducts.add(SellerProducts(
+          productId: itemsKey,
+          sellerId: itemsData["sellerId"],
+          productCategory: itemsData["productCategory"],
+          productDescription: itemsData["productDescription"],
+          productImage: itemsData["productImage"],
+          productName: itemsData["productName"],
+          productPrice: itemsData["productPrice"],
+          productStock: itemsData["productStock"],
+        ));
+      });
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (sellerProducts.isEmpty) {
+      setState(() {
+        getDataOnce();
+      });
+    }
     Size screenSize = Utils().getScreenSize();
     return Scaffold(
       backgroundColor: ColorResources.getHomeBg(context),
@@ -39,9 +71,9 @@ class _PasarPageState extends State<PasarPage> {
               SizedBox(
                 height: screenSize.height * 0.027,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: const firstOffer(),
+              const Padding(
+                padding: EdgeInsets.only(left: 12.0, right: 12),
+                child: firstOffer(),
               ),
               SizedBox(
                 height: screenSize.height * 0.025,
@@ -53,9 +85,9 @@ class _PasarPageState extends State<PasarPage> {
               SizedBox(
                 height: screenSize.height * 0.020,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: const CategoryTitle(),
+              const Padding(
+                padding: EdgeInsets.only(left: 12.0, right: 12),
+                child: CategoryTitle(),
               ),
               SizedBox(
                 height: screenSize.height * 0.027,
@@ -67,19 +99,128 @@ class _PasarPageState extends State<PasarPage> {
               SizedBox(
                 height: screenSize.height * 0.027,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: const SecondOfferTitle(),
+              const Padding(
+                padding: EdgeInsets.only(left: 12.0, right: 12),
+                child: SecondOfferTitle(),
               ),
               SizedBox(
                 height: screenSize.height * 0.027,
               ),
-              SecondOffer(screenSize: screenSize),
+              secondOfferContainer(screenSize),
               SizedBox(
                 height: screenSize.height * 0.027,
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox secondOfferContainer(Size screenSize) {
+    return SizedBox(
+      height: screenSize.height * 0.367,
+      child: Container(
+        width: double.infinity,
+        color: blue1,
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: sellerProducts.length,
+          itemBuilder: ((context, index) {
+            final product = sellerProducts[index];
+            return Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: Stack(
+                children: [
+                  InkWell(
+                    onTap: (() {
+                      //TODO: push ke pasar product details
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PasarDetails(
+                                  sellerProductsDetails: product)));
+                    }),
+                    child: Container(
+                      width: screenSize.width * 0.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: ColorResources.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: screenSize.height * 0.19,
+                            width: screenSize.width * 0.65,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(product.productImage),
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                topRight: Radius.circular(15),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.productName,
+                                  style: TextStyle(
+                                      color: blue1,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(
+                                  height: screenSize.height * 0.005,
+                                ),
+                                Text(
+                                  product.productPrice,
+                                  style: const TextStyle(
+                                      fontSize: 18.5,
+                                      color: ColorResources.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: screenSize.height * 0.009,
+                                ),
+                                Text(
+                                  "10.000",
+                                  style: const TextStyle(
+                                    fontSize: 10.0,
+                                    color: Colors.black45,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Positioned(
+                    right: 0,
+                    child: Padding(
+                        padding: EdgeInsets.all(6.0),
+                        child: Icon(
+                          Icons.favorite_rounded,
+                          size: 25,
+                          color: ColorResources.white,
+                        )),
+                  )
+                ],
+              ),
+            );
+          }),
         ),
       ),
     );
@@ -100,7 +241,10 @@ class CostumAppBarMart extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            sellerProducts.clear();
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back_rounded,
             color: ColorResources.black,
@@ -159,16 +303,16 @@ class SearchBoxMart extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          height: screenSize.height * 0.065,
+          height: screenSize.height * 0.058,
           width: screenSize.width * 0.938,
           child: TextFormField(
             decoration: InputDecoration(
-              prefixIcon: Icon(
+              prefixIcon: const Icon(
                 Icons.search,
-                color: blue1,
+                color: Colors.black54,
               ),
               hintText: "Find fresh products here",
-              hintStyle: const TextStyle(color: Colors.black54),
+              hintStyle: const TextStyle(color: Colors.black54, height: 4.3),
               fillColor: Colors.white70,
               filled: true,
               enabledBorder: OutlineInputBorder(
@@ -205,11 +349,12 @@ class SmallContainers extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           SizedBox(
-            width: screenSize.width * 1.98,
+            width: screenSize.width * 0.95,
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                childAspectRatio: 1.3,
+              scrollDirection: Axis.horizontal,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.65,
               ),
               itemCount: smallPasarItems.length,
               itemBuilder: ((context, index) {
@@ -217,14 +362,15 @@ class SmallContainers extends StatelessWidget {
                   padding: const EdgeInsets.all(5.0),
                   child: InkWell(
                     onTap: (() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => MartDetails(
-                                details: smallPasarItems[index],
-                              )),
-                        ),
-                      );
+                      // TODO : buat pasar products details
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: ((context) => MartDetails(
+                      //           details: smallPasarItems[index],
+                      //         )),
+                      //   ),
+                      // );
                     }),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -243,14 +389,14 @@ class SmallContainers extends StatelessWidget {
                               BoxShadow(
                                 blurRadius: 0.8,
                                 color: blue1,
-                                offset: Offset(0.0, 0.5),
+                                offset: const Offset(0.0, 0.5),
                               )
                             ],
                           ),
                         ),
                         Text(
                           smallPasarItems[index].name,
-                          style: TextStyle(color: ColorResources.black),
+                          style: const TextStyle(color: ColorResources.black),
                         )
                       ],
                     ),
@@ -396,120 +542,16 @@ class offerContainer extends StatelessWidget {
   }
 }
 
-class SecondOffer extends StatelessWidget {
-  const SecondOffer({
-    super.key,
-    required this.screenSize,
-  });
+// class SecondOffer extends StatelessWidget {
+//   const SecondOffer({
+//     super.key,
+//     required this.screenSize,
+//   });
 
-  final Size screenSize;
+//   final Size screenSize;
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: screenSize.height * 0.367,
-      child: Container(
-        color: blue1,
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: allProductPasarItems.length,
-          itemBuilder: ((context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(7.0),
-              child: Stack(
-                children: [
-                  InkWell(
-                    onTap: (() {}),
-                    child: Container(
-                      width: screenSize.width * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: ColorResources.white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 0.8,
-                            color: blue1,
-                            offset: Offset(0.0, 0.5),
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: screenSize.height * 0.19,
-                            width: screenSize.width * 0.65,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image:
-                                    NetworkImage(smallPasarItems[index].image),
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  smallPasarItems[index].name,
-                                  style: TextStyle(
-                                      color: blue1,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: screenSize.height * 0.005,
-                                ),
-                                Text(
-                                  allProductPasarItems[index].discountPrice,
-                                  style: const TextStyle(
-                                      fontSize: 18.5,
-                                      color: ColorResources.black,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: screenSize.height * 0.009,
-                                ),
-                                Text(
-                                  allProductPasarItems[index].price,
-                                  style: const TextStyle(
-                                    fontSize: 10.0,
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Positioned(
-                    right: 0,
-                    child: Padding(
-                        padding: EdgeInsets.all(6.0),
-                        child: Icon(
-                          Icons.favorite_rounded,
-                          size: 25,
-                          color: ColorResources.white,
-                        )),
-                  )
-                ],
-              ),
-            );
-          }),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return 
+//   }
+// }

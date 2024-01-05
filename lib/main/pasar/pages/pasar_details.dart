@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:users_app/main/food/models/seller_products.dart';
 import 'package:users_app/utils/constant.dart';
-import 'package:users_app/main/mart/models/small_mart.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-class MartDetails extends StatefulWidget {
-  final SmallMart details;
-  const MartDetails({
+class PasarDetails extends StatefulWidget {
+  final SellerProducts sellerProductsDetails;
+  const PasarDetails({
     super.key,
-    required this.details,
+    required this.sellerProductsDetails,
   });
 
   @override
-  State<MartDetails> createState() => _MartDetailsState();
+  State<PasarDetails> createState() => _PasarDetailsState();
 }
 
-class _MartDetailsState extends State<MartDetails> {
+class _PasarDetailsState extends State<PasarDetails> {
   // int? _value = 1;
 
   @override
@@ -36,7 +36,8 @@ class _MartDetailsState extends State<MartDetails> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fitWidth,
-                        image: NetworkImage(widget.details.image),
+                        image: NetworkImage(
+                            widget.sellerProductsDetails.productImage),
                       ),
                     ),
                   ),
@@ -89,7 +90,7 @@ class _MartDetailsState extends State<MartDetails> {
                       height: sc.height * 0.010,
                     ),
                     Text(
-                      widget.details.name2,
+                      widget.sellerProductsDetails.productName,
                       style: TextStyle(
                           fontSize: 21.5,
                           fontWeight: FontWeight.bold,
@@ -106,7 +107,7 @@ class _MartDetailsState extends State<MartDetails> {
                           size: 16,
                         ),
                         Text(
-                          widget.details.ratting,
+                          "9.2",
                           style: TextStyle(
                               fontSize: 12.5, color: ColorResources.black),
                         ),
@@ -119,7 +120,7 @@ class _MartDetailsState extends State<MartDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.details.price,
+                          widget.sellerProductsDetails.productPrice,
                           style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -171,7 +172,7 @@ class _MartDetailsState extends State<MartDetails> {
                       height: sc.height * 0.006,
                     ),
                     Text(
-                      widget.details.description,
+                      widget.sellerProductsDetails.productDescription,
                       style: TextStyle(
                         fontSize: 15,
                         color: ColorResources.black,
