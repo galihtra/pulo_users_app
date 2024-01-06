@@ -4,7 +4,7 @@ import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-import '../models/seller_products.dart';
+import '../../../models/seller_products.dart';
 
 class FoodDetails extends StatefulWidget {
   final SellerProducts sellerProductsDetails;

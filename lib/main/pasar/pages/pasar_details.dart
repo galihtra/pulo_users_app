@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:users_app/main/food/models/seller_products.dart';
+import 'package:users_app/models/seller_products.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';

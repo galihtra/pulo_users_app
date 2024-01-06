@@ -8,7 +8,7 @@ import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-import '../../food/models/seller_products.dart';
+import '../../../models/seller_products.dart';
 
 class PasarPage extends StatefulWidget {
   const PasarPage({super.key});
@@ -51,67 +51,71 @@ class _PasarPageState extends State<PasarPage> {
       });
     }
     Size screenSize = Utils().getScreenSize();
-    return Scaffold(
-      backgroundColor: ColorResources.getHomeBg(context),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12, top: 25),
-                child: CostumAppBarMart(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.015,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: SearchBoxMart(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0, right: 12),
-                child: firstOffer(),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.025,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: offerContainer(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.020,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0, right: 12),
-                child: CategoryTitle(),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 12),
-                child: SmallContainers(screenSize: screenSize),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0, right: 12),
-                child: SecondOfferTitle(),
-              ),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-              secondOfferContainer(screenSize),
-              SizedBox(
-                height: screenSize.height * 0.027,
-              ),
-            ],
+    return PopScope(
+      onPopInvoked: (didPop) => sellerProducts.clear(),
+      child: Scaffold(
+        backgroundColor: ColorResources.getHomeBg(context),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 12.0, right: 12, top: 25),
+                  child: CostumAppBarMart(screenSize: screenSize),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.015,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0, right: 12),
+                  child: SearchBoxMart(screenSize: screenSize),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 12.0, right: 12),
+                  child: firstOffer(),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.025,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0, right: 12),
+                  child: offerContainer(screenSize: screenSize),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.020,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 12.0, right: 12),
+                  child: CategoryTitle(),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0, right: 12),
+                  child: SmallContainers(screenSize: screenSize),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 12.0, right: 12),
+                  child: SecondOfferTitle(),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+                secondOfferContainer(screenSize),
+                SizedBox(
+                  height: screenSize.height * 0.027,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -137,7 +141,6 @@ class _PasarPageState extends State<PasarPage> {
                 children: [
                   InkWell(
                     onTap: (() {
-                      //TODO: push ke pasar product details
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -196,15 +199,15 @@ class _PasarPageState extends State<PasarPage> {
                                 SizedBox(
                                   height: screenSize.height * 0.009,
                                 ),
-                                Text(
-                                  "Rp 10.000",
-                                  style: const TextStyle(
-                                    fontSize: 10.0,
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
+                                // Text(
+                                //   "Rp 10.000",
+                                //   style: const TextStyle(
+                                //     fontSize: 10.0,
+                                //     color: Colors.black45,
+                                //     fontWeight: FontWeight.bold,
+                                //     decoration: TextDecoration.lineThrough,
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

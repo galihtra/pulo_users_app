@@ -5,7 +5,7 @@ import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
 
-import '../models/seller_products.dart';
+import '../../../models/seller_products.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({super.key});
@@ -48,102 +48,105 @@ class FoodPageState extends State<FoodPage> {
       });
     }
     Size screenSize = Utils().getScreenSize();
-    return Scaffold(
-      backgroundColor: ColorResources.getHomeBg(context),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12.0, right: 12, top: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
+    return PopScope(
+      onPopInvoked: (didPop) => sellerProducts.clear(),
+      child: Scaffold(
+        backgroundColor: ColorResources.getHomeBg(context),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 12.0, right: 12, top: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                          height: screenSize.height * 0.065,
+                          width: screenSize.width * 0.115,
+                          decoration: BoxDecoration(
+                              color: ColorResources.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: blue1,
+                                  blurRadius: 0.5,
+                                )
+                              ]),
+                          child: IconButton(
+                            onPressed: () {
+                              sellerProducts.clear();
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.clear_rounded,
+                              color: ColorResources.black,
+                            ),
+                          )),
+                      Column(
+                        children: [
+                          const Text(
+                            "Deliver to",
+                            style: TextStyle(
+                                color: ColorResources.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            height: screenSize.height * 0.002,
+                          ),
+                          Text(
+                            "02-075 Konstructorska 9",
+                            style: TextStyle(
+                              color: blue1,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
                         height: screenSize.height * 0.065,
                         width: screenSize.width * 0.115,
                         decoration: BoxDecoration(
-                            color: ColorResources.white,
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                color: blue1,
-                                blurRadius: 0.5,
-                              )
-                            ]),
-                        child: IconButton(
-                          onPressed: () {
-                            sellerProducts.clear();
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.clear_rounded,
-                            color: ColorResources.black,
-                          ),
-                        )),
-                    Column(
-                      children: [
-                        const Text(
-                          "Deliver to",
-                          style: TextStyle(
-                              color: ColorResources.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: screenSize.height * 0.002,
-                        ),
-                        Text(
-                          "02-075 Konstructorska 9",
-                          style: TextStyle(
+                            image: const DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-LJaTp0HFRT2GHznf3n7iSAzu-z7och7Vc0GsJkTHWEk67OjQ0t0o6piSTpTv9sr7UI&usqp=CAU")),
                             color: blue1,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: screenSize.height * 0.065,
-                      width: screenSize.width * 0.115,
-                      decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-LJaTp0HFRT2GHznf3n7iSAzu-z7och7Vc0GsJkTHWEk67OjQ0t0o6piSTpTv9sr7UI&usqp=CAU")),
-                          color: blue1,
-                          borderRadius: BorderRadius.circular(15)),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: screenSize.height * 0.025,
-                ),
-                const Text(
-                  "What would you like\nto order",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: ColorResources.black,
-                    fontSize: 21,
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(
-                  height: screenSize.height * 0.027,
-                ),
-                SearchBoxFood(screenSize: screenSize),
-                SizedBox(
-                  height: screenSize.height * 0.027,
-                ),
-                smallContainers(screenSize),
-                SizedBox(
-                  height: screenSize.height * 0.015,
-                ),
-                const BigContainersTitle(),
-                SizedBox(
-                  height: screenSize.height * 0.020,
-                ),
-                BigContainersFood(screenSize: screenSize),
-              ],
+                  SizedBox(
+                    height: screenSize.height * 0.025,
+                  ),
+                  const Text(
+                    "What would you like\nto order",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: ColorResources.black,
+                      fontSize: 21,
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenSize.height * 0.027,
+                  ),
+                  SearchBoxFood(screenSize: screenSize),
+                  SizedBox(
+                    height: screenSize.height * 0.027,
+                  ),
+                  smallContainers(screenSize),
+                  SizedBox(
+                    height: screenSize.height * 0.015,
+                  ),
+                  const BigContainersTitle(),
+                  SizedBox(
+                    height: screenSize.height * 0.020,
+                  ),
+                  BigContainersFood(screenSize: screenSize),
+                ],
+              ),
             ),
           ),
         ),
