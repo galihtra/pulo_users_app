@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:users_app/main/pasar/models/offer.dart';
 import 'package:users_app/main/pasar/models/small_pasar.dart';
 import 'package:users_app/main/pasar/pages/pasar_details.dart';
@@ -20,7 +21,7 @@ class PasarPage extends StatefulWidget {
 class _PasarPageState extends State<PasarPage> {
   DatabaseReference items =
       FirebaseDatabase.instance.ref().child("sellerItems");
-  void getDataOnce() async {
+  void getDataOnce(BuildContext context) async {
     DataSnapshot itemsSnapshot =
         // await items.get();
         await items.orderByChild("productCategory").equalTo("pasar").get();
@@ -28,16 +29,16 @@ class _PasarPageState extends State<PasarPage> {
     if (itemsSnapshot.exists) {
       Map<dynamic, dynamic> itemsProduct = itemsSnapshot.value as Map;
       itemsProduct.forEach((itemsKey, itemsData) {
-        sellerProducts.add(SellerProducts(
-          productId: itemsKey,
-          sellerId: itemsData["sellerId"],
-          productCategory: itemsData["productCategory"],
-          productDescription: itemsData["productDescription"],
-          productImage: itemsData["productImage"],
-          productName: itemsData["productName"],
-          productPrice: itemsData["productPrice"],
-          productStock: itemsData["productStock"],
-        ));
+        context.read<SellerProducts>().sellerProducts.add(SellerProducts(
+              productId: itemsKey,
+              sellerId: itemsData["sellerId"],
+              productCategory: itemsData["productCategory"],
+              productDescription: itemsData["productDescription"],
+              productImage: itemsData["productImage"],
+              productName: itemsData["productName"],
+              productPrice: itemsData["productPrice"],
+              productStock: itemsData["productStock"],
+            ));
       });
     }
     setState(() {});
@@ -45,14 +46,15 @@ class _PasarPageState extends State<PasarPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (sellerProducts.isEmpty) {
+    if (context.read<SellerProducts>().sellerProducts.isEmpty) {
       setState(() {
-        getDataOnce();
+        getDataOnce(context);
       });
     }
     Size screenSize = Utils().getScreenSize();
     return PopScope(
-      onPopInvoked: (didPop) => sellerProducts.clear(),
+      onPopInvoked: (didPop) =>
+          context.read<SellerProducts>().sellerProducts.clear(),
       child: Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
         body: SingleChildScrollView(
@@ -61,8 +63,7 @@ class _PasarPageState extends State<PasarPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 12.0, right: 12, top: 25),
+                  padding: const EdgeInsets.only(left: 2.0, right: 12, top: 10),
                   child: CostumAppBarMart(screenSize: screenSize),
                 ),
                 SizedBox(
@@ -124,7 +125,9 @@ class _PasarPageState extends State<PasarPage> {
 
   SizedBox secondOfferContainer(Size screenSize) {
     return SizedBox(
-      height: screenSize.height * 0.367,
+      /// Mentukan keseluruhan tinggi dari container
+      // height: screenSize.height * 0.367,
+      height: screenSize.height * 0.305,
       child: Container(
         width: double.infinity,
         color: blue1,
@@ -132,9 +135,10 @@ class _PasarPageState extends State<PasarPage> {
           shrinkWrap: true,
           physics: const ScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: sellerProducts.length,
+          itemCount: context.read<SellerProducts>().sellerProducts.length,
           itemBuilder: ((context, index) {
-            final product = sellerProducts[index];
+            final product =
+                context.read<SellerProducts>().sellerProducts[index];
             return Padding(
               padding: const EdgeInsets.all(7.0),
               child: Stack(
@@ -250,7 +254,7 @@ class CostumAppBarMart extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {
-            sellerProducts.clear();
+            context.read<SellerProducts>().sellerProducts.clear();
             Navigator.pop(context);
           },
           icon: const Icon(
@@ -560,6 +564,6 @@ class offerContainer extends StatelessWidget {
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return 
+//     return
 //   }
 // }

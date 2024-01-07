@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:users_app/main/cart/cart_screen.dart';
 import 'package:users_app/main/home/widgets/balance_widget.dart';
 import 'package:users_app/main/home/widgets/banner_widget.dart';
 import 'package:users_app/main/home/widgets/content_widget.dart';
 import 'package:users_app/main/home/widgets/menus_widget.dart';
+import 'package:users_app/models/seller_products.dart';
 
 import '../../utils/color_resources.dart';
 import '../../utils/custom_themes.dart';
@@ -48,7 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.only(right: 12.0),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CartScreen())),
                         icon: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -65,7 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 radius: 7,
                                 backgroundColor: ColorResources.red,
                                 child: Text(
-                                  '10',
+                                  context
+                                      .watch<SellerProducts>()
+                                      .cart
+                                      .length
+                                      .toString(),
                                   style: titilliumSemiBold.copyWith(
                                     color: ColorResources.white,
                                     fontSize: Dimensions.fontSizeExtraSmall,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/light_themes.dart';
@@ -144,7 +145,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  if (value > 0) {
+                                  if (value > 1) {
                                     setState(() {
                                       value--;
                                     });
@@ -187,7 +188,6 @@ class _FoodDetailsState extends State<FoodDetails> {
                               ),
                               IconButton(
                                 onPressed: () {
-                                  // TODO : buat if statement jika value kurang sama dengan dari productStock maka value++
                                   if (value <
                                       widget
                                           .sellerProductsDetails.productStock) {
@@ -232,170 +232,22 @@ class _FoodDetailsState extends State<FoodDetails> {
                           color: ColorResources.black,
                         ),
                       ),
-                      // SizedBox(
-                      //   height: sc.height * 0.015,
-                      // ),
-                      // const Text(
-                      //   "Choose Additive",
-                      //   style: TextStyle(
-                      //     fontSize: 22,
-                      //     fontWeight: FontWeight.bold,
-                      //     color: ColorResources.black,
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: sc.height * 0.01,
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     Container(
-                      //       height: sc.height * 0.080,
-                      //       width: sc.width * 0.15,
-                      //       decoration: const BoxDecoration(
-                      //           image: DecorationImage(
-                      //             fit: BoxFit.cover,
-                      //             image:
-                      //                 AssetImage("assets/images/creamcheese.png"),
-                      //           ),
-                      //           color: Color(0xff3A3843),
-                      //           shape: BoxShape.circle),
-                      //     ),
-                      //     SizedBox(
-                      //       width: sc.width * 0.03,
-                      //     ),
-                      //     const Text(
-                      //       "Cream Cheese",
-                      //       style: TextStyle(
-                      //           color: ColorResources.black,
-                      //           fontSize: 16,
-                      //           fontWeight: FontWeight.w500),
-                      //     ),
-                      //     SizedBox(
-                      //       width: sc.width * 0.22,
-                      //     ),
-                      //     Row(
-                      //       children: [
-                      //         const Text(
-                      //           "\$${10}",
-                      //           style: TextStyle(
-                      //               color: ColorResources.black, fontSize: 16),
-                      //         ),
-                      //         Radio(
-                      //             value: 1,
-                      //             groupValue: _value,
-                      //             onChanged: (int? value) {
-                      //               setState(() {
-                      //                 _value = value!;
-                      //               });
-                      //             }),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(
-                      //   height: sc.height * 0.015,
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     Container(
-                      //       height: sc.height * 0.080,
-                      //       width: sc.width * 0.15,
-                      //       decoration: const BoxDecoration(
-                      //           image: DecorationImage(
-                      //             fit: BoxFit.cover,
-                      //             image: AssetImage("assets/images/avocado.png"),
-                      //           ),
-                      //           color: Color(0xff3A3843),
-                      //           shape: BoxShape.circle),
-                      //     ),
-                      //     SizedBox(
-                      //       width: sc.width * 0.03,
-                      //     ),
-                      //     const Text(
-                      //       "Avocado",
-                      //       style: TextStyle(
-                      //           color: ColorResources.black,
-                      //           fontSize: 16,
-                      //           fontWeight: FontWeight.w500),
-                      //     ),
-                      //     SizedBox(
-                      //       width: sc.width * 0.328,
-                      //     ),
-                      //     Row(
-                      //       children: [
-                      //         const Text(
-                      //           "\$${11}",
-                      //           style: TextStyle(
-                      //               color: ColorResources.black, fontSize: 16),
-                      //         ),
-                      //         Radio(
-                      //             value: 2,
-                      //             groupValue: _value,
-                      //             onChanged: (int? value) {
-                      //               setState(() {
-                      //                 _value = value!;
-                      //               });
-                      //             }),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(
-                      //   height: sc.height * 0.015,
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     Container(
-                      //       height: sc.height * 0.080,
-                      //       width: sc.width * 0.15,
-                      //       decoration: const BoxDecoration(
-                      //           image: DecorationImage(
-                      //             fit: BoxFit.cover,
-                      //             image: NetworkImage(
-                      //                 "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tomato.png"),
-                      //           ),
-                      //           color: Color(0xff3A3843),
-                      //           shape: BoxShape.circle),
-                      //     ),
-                      //     SizedBox(
-                      //       width: sc.width * 0.0305,
-                      //     ),
-                      //     const Text(
-                      //       "Tomato",
-                      //       style: TextStyle(
-                      //           color: ColorResources.black,
-                      //           fontSize: 16,
-                      //           fontWeight: FontWeight.w500),
-                      //     ),
-                      //     SizedBox(
-                      //       width: sc.width * 0.35,
-                      //     ),
-                      //     Row(
-                      //       children: [
-                      //         const Text(
-                      //           "\$${13}",
-                      //           style: TextStyle(
-                      //               color: ColorResources.black, fontSize: 16),
-                      //         ),
-                      //         Radio(
-                      //             value: 3,
-                      //             groupValue: _value,
-                      //             onChanged: (int? value) {
-                      //               setState(() {
-                      //                 _value = value!;
-                      //               });
-                      //             }),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(
-                      //   height: sc.height * 0.015,
-                      // ),
                       const Expanded(child: SizedBox()),
                       Center(
                           child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context
+                              .read<SellerProducts>()
+                              .addToCart(widget.sellerProductsDetails, value);
+                          showDialog(
+                              context: context,
+                              builder: ((context) => const AlertDialog(
+                                    content: Text("Berhasil ditambahkan!"),
+                                  ))).then((value) {
+                            Navigator.pop(context);
+                            setState(() {});
+                          });
+                        },
                         style: ButtonStyle(
                             backgroundColor: MaterialStatePropertyAll(blue2)),
                         child: const Text(

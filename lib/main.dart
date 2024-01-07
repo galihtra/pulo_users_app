@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:users_app/appInfo/app_info.dart';
 import 'package:users_app/main/dashboard/dashboard_screen.dart';
 import 'package:users_app/main/splash/splash_screen.dart';
+import 'package:users_app/models/seller_products.dart';
 import 'firebase_options.dart';
 import 'main/auth/auth_page.dart';
 import 'utils/light_themes.dart';
@@ -30,13 +31,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-    return ChangeNotifierProvider(
-      create: (context) => AppInfo(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AppInfo(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SellerProducts(),
+        )
+      ],
       child: MaterialApp(
         title: 'Flutter User App',
         debugShowCheckedModeBanner: false,
         theme: light,
-        navigatorKey: navigatorKey, 
+        navigatorKey: navigatorKey,
         home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
@@ -75,5 +83,50 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+    // return ChangeNotifierProvider(
+    //   create: (context) => AppInfo(),
+    //   child: MaterialApp(
+    //     title: 'Flutter User App',
+    //     debugShowCheckedModeBanner: false,
+    //     theme: light,
+    //     navigatorKey: navigatorKey,
+    //     home: StreamBuilder(
+    //       stream: FirebaseAuth.instance.authStateChanges(),
+    //       builder: (context, snapshot) {
+    //         if (snapshot.connectionState == ConnectionState.active) {
+    //           final user = snapshot.data;
+    //           if (user == null) {
+    //             return SplashScreen(
+    //               onInitializationComplete: () {
+    //                 navigatorKey.currentState?.pushReplacement(
+    //                   MaterialPageRoute(
+    //                     builder: (_) => const AuthPage(),
+    //                   ),
+    //                 );
+    //               },
+    //             );
+    //           } else {
+    //             return SplashScreen(
+    //               onInitializationComplete: () {
+    //                 navigatorKey.currentState?.pushReplacement(
+    //                   MaterialPageRoute(
+    //                     builder: (_) => const DashboardScreen(
+    //                       initialIndex: 0,
+    //                     ),
+    //                   ),
+    //                 );
+    //               },
+    //             );
+    //           }
+    //         } else {
+    //           return const MaterialApp(
+    //             debugShowCheckedModeBanner: false,
+    //             home: CircularProgressIndicator(),
+    //           );
+    //         }
+    //       },
+    //     ),
+    //   ),
+    // );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:users_app/models/seller_products.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
@@ -139,7 +140,7 @@ class _PasarDetailsState extends State<PasarDetails> {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  if (value > 0) {
+                                  if (value > 1) {
                                     setState(() {
                                       value--;
                                     });
@@ -389,36 +390,31 @@ class _PasarDetailsState extends State<PasarDetails> {
                       // ),
                       const Expanded(child: SizedBox()),
                       Center(
-                          child: ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(blue2)),
-                        child: const Text(
-                          "Add to cart",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: ColorResources.white,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read<SellerProducts>()
+                                .addToCart(widget.sellerProductsDetails, value);
+                            showDialog(
+                                context: context,
+                                builder: ((context) => const AlertDialog(
+                                      content: Text("Berhasil ditambahkan!"),
+                                    ))).then((value) {
+                              Navigator.pop(context);
+                              setState(() {});
+                            });
+                          },
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(blue2)),
+                          child: const Text(
+                            "Add to cart",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: ColorResources.white,
+                            ),
                           ),
                         ),
-                      )
-                          // Container(
-                          //   height: sc.height * 0.06,
-                          //   width: sc.width * 0.75,
-                          //   decoration: BoxDecoration(
-                          //     color: blue2,
-                          //     borderRadius: BorderRadius.circular(12),
-                          //   ),
-                          //   child: const Center(
-                          //     child: Text(
-                          //       "Add to cart",
-                          //       style: TextStyle(
-                          //         fontSize: 18,
-                          //         color: ColorResources.white,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          ),
+                      ),
                     ],
                   ),
                 ),

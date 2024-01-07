@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:users_app/main/food/pages/food_details.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
@@ -17,7 +18,8 @@ class FoodPage extends StatefulWidget {
 class FoodPageState extends State<FoodPage> {
   DatabaseReference items =
       FirebaseDatabase.instance.ref().child("sellerItems");
-  void getDataOnce() async {
+
+  void getDataOnce(BuildContext context) async {
     DataSnapshot itemsSnapshot =
         // await items.get();
         await items.orderByChild("productCategory").equalTo("food").get();
@@ -25,16 +27,16 @@ class FoodPageState extends State<FoodPage> {
     if (itemsSnapshot.exists) {
       Map<dynamic, dynamic> itemsProduct = itemsSnapshot.value as Map;
       itemsProduct.forEach((itemsKey, itemsData) {
-        sellerProducts.add(SellerProducts(
-          productId: itemsKey,
-          sellerId: itemsData["sellerId"],
-          productCategory: itemsData["productCategory"],
-          productDescription: itemsData["productDescription"],
-          productImage: itemsData["productImage"],
-          productName: itemsData["productName"],
-          productPrice: itemsData["productPrice"],
-          productStock: itemsData["productStock"],
-        ));
+        context.read<SellerProducts>().sellerProducts.add(SellerProducts(
+              productId: itemsKey,
+              sellerId: itemsData["sellerId"],
+              productCategory: itemsData["productCategory"],
+              productDescription: itemsData["productDescription"],
+              productImage: itemsData["productImage"],
+              productName: itemsData["productName"],
+              productPrice: itemsData["productPrice"],
+              productStock: itemsData["productStock"],
+            ));
       });
     }
     setState(() {});
@@ -42,14 +44,15 @@ class FoodPageState extends State<FoodPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (sellerProducts.isEmpty) {
+    if (context.read<SellerProducts>().sellerProducts.isEmpty) {
       setState(() {
-        getDataOnce();
+        getDataOnce(context);
       });
     }
     Size screenSize = Utils().getScreenSize();
     return PopScope(
-      onPopInvoked: (didPop) => sellerProducts.clear(),
+      onPopInvoked: (didPop) =>
+          context.read<SellerProducts>().sellerProducts.clear(),
       child: Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
         body: SingleChildScrollView(
@@ -76,7 +79,10 @@ class FoodPageState extends State<FoodPage> {
                               ]),
                           child: IconButton(
                             onPressed: () {
-                              sellerProducts.clear();
+                              context
+                                  .read<SellerProducts>()
+                                  .sellerProducts
+                                  .clear();
                               Navigator.pop(context);
                             },
                             icon: const Icon(
@@ -161,9 +167,9 @@ class FoodPageState extends State<FoodPage> {
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: sellerProducts.length,
+        itemCount: context.read<SellerProducts>().sellerProducts.length,
         itemBuilder: ((context, index) {
-          final product = sellerProducts[index];
+          final product = context.read<SellerProducts>().sellerProducts[index];
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: InkWell(
@@ -304,9 +310,9 @@ class BigContainersFood extends StatelessWidget {
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: sellerProducts.length,
+        itemCount: context.read<SellerProducts>().sellerProducts.length,
         itemBuilder: ((context, index) {
-          final product = sellerProducts[index];
+          final product = context.read<SellerProducts>().sellerProducts[index];
           return Padding(
             padding: const EdgeInsets.all(7.0),
             child: Stack(
