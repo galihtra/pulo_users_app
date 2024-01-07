@@ -398,7 +398,16 @@ class _PasarDetailsState extends State<PasarDetails> {
                             showDialog(
                                 context: context,
                                 builder: ((context) => const AlertDialog(
-                                      content: Text("Berhasil ditambahkan!"),
+                                      content: Center(
+                                        heightFactor: 1,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: 7),
+                                          child: Text(
+                                            "Berhasil ditambahkan!",
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                        ),
+                                      ),
                                     ))).then((value) {
                               Navigator.pop(context);
                               setState(() {});

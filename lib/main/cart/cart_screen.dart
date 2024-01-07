@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:users_app/models/seller_products.dart';
 import 'package:users_app/utils/color_resources.dart';
+import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/light_themes.dart';
 
 class CartScreen extends StatefulWidget {
@@ -45,9 +46,13 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     getAllItemPrice(context);
+    Size sc = Utils().getScreenSize();
     return Consumer<SellerProducts>(
       builder: (context, value, child) => Scaffold(
+        backgroundColor: ColorResources.getHomeBg(context),
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: ColorResources.getHomeBg(context),
           title: const Text("My Cart",
               style: TextStyle(fontWeight: FontWeight.bold)),
           centerTitle: true,
@@ -82,26 +87,44 @@ class _CartScreenState extends State<CartScreen> {
                           cartItems.productPrice,
                         );
 
+                        /// get item's image
+                        final String itemImage = cartItems.productImage;
+
                         /// return list tile
                         return Container(
                           decoration: BoxDecoration(
-                            color: blue2,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                              color: ColorResources.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 0.8,
+                                  color: blue1,
+                                  offset: const Offset(0.0, 0.5),
+                                )
+                              ]),
                           margin: const EdgeInsets.only(
                               left: 20, top: 20, right: 20),
                           child: ListTile(
+                            leading: Container(
+                              width: sc.width * 0.13,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: NetworkImage(itemImage),
+                                    fit: BoxFit.fill),
+                              ),
+                            ),
                             title: Text(
                               itemName,
                               style: const TextStyle(
-                                color: ColorResources.white,
+                                color: ColorResources.black,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             subtitle: Text(
                               itemPrice,
                               style: const TextStyle(
-                                color: ColorResources.grey,
+                                color: ColorResources.black,
                               ),
                             ),
                             trailing: IconButton(
@@ -111,7 +134,7 @@ class _CartScreenState extends State<CartScreen> {
                               },
                               icon: const Icon(
                                 Icons.delete,
-                                color: ColorResources.grey,
+                                color: ColorResources.black,
                               ),
                             ),
                           ),
@@ -126,7 +149,8 @@ class _CartScreenState extends State<CartScreen> {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(blue2),
+                          backgroundColor:
+                              MaterialStatePropertyAll(light.primaryColor),
                           foregroundColor: const MaterialStatePropertyAll(
                               ColorResources.white)),
                       child: Row(
