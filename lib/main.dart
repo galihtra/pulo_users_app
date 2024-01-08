@@ -7,8 +7,11 @@ import 'package:users_app/appInfo/app_info.dart';
 import 'package:users_app/main/dashboard/dashboard_screen.dart';
 import 'package:users_app/main/splash/splash_screen.dart';
 import 'package:users_app/models/seller_products.dart';
+import 'package:users_app/models/user_cart.dart';
+
 import 'firebase_options.dart';
 import 'main/auth/auth_page.dart';
+
 import 'utils/light_themes.dart';
 
 Future<void> main() async {
@@ -38,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SellerProducts(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UserCart(),
         )
       ],
       child: MaterialApp(

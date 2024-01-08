@@ -5,11 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:users_app/main/pasar/models/offer.dart';
 import 'package:users_app/main/pasar/models/small_pasar.dart';
 import 'package:users_app/main/pasar/pages/pasar_details.dart';
+import 'package:users_app/models/seller_products.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
-
-import '../../../models/seller_products.dart';
 
 class PasarPage extends StatefulWidget {
   const PasarPage({super.key});

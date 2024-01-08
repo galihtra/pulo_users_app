@@ -2,11 +2,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:users_app/main/food/pages/food_details.dart';
+import 'package:users_app/models/seller_products.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
-
-import '../../../models/seller_products.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({super.key});

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:users_app/models/seller_products.dart';
+import 'package:users_app/models/user_cart.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/light_themes.dart';
@@ -393,7 +394,7 @@ class _PasarDetailsState extends State<PasarDetails> {
                         child: ElevatedButton(
                           onPressed: () {
                             context
-                                .read<SellerProducts>()
+                                .read<UserCart>()
                                 .addToCart(widget.sellerProductsDetails, value);
                             showDialog(
                                 context: context,

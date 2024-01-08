@@ -5,7 +5,7 @@ import 'package:users_app/main/home/widgets/balance_widget.dart';
 import 'package:users_app/main/home/widgets/banner_widget.dart';
 import 'package:users_app/main/home/widgets/content_widget.dart';
 import 'package:users_app/main/home/widgets/menus_widget.dart';
-import 'package:users_app/models/seller_products.dart';
+import 'package:users_app/models/user_cart.dart';
 
 import '../../utils/color_resources.dart';
 import '../../utils/custom_themes.dart';
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 backgroundColor: ColorResources.red,
                                 child: Text(
                                   context
-                                      .watch<SellerProducts>()
+                                      .watch<UserCart>()
                                       .cart
                                       .length
                                       .toString(),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:users_app/models/seller_products.dart';
+import 'package:users_app/models/user_cart.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/light_themes.dart';
-
-import '../../../models/seller_products.dart';
 
 class FoodDetails extends StatefulWidget {
   final SellerProducts sellerProductsDetails;
@@ -237,7 +237,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                           child: ElevatedButton(
                         onPressed: () {
                           context
-                              .read<SellerProducts>()
+                              .read<UserCart>()
                               .addToCart(widget.sellerProductsDetails, value);
                           showDialog(
                               context: context,

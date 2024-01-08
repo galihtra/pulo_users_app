@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:users_app/models/seller_products.dart';
+import 'package:users_app/main/payment/payment.dart';
+import 'package:users_app/models/user_cart.dart';
 import 'package:users_app/utils/color_resources.dart';
 import 'package:users_app/utils/constant.dart';
 import 'package:users_app/utils/light_themes.dart';
@@ -18,20 +19,20 @@ class _CartScreenState extends State<CartScreen> {
   String allItemPriceFormat = "0";
 
   /// remove from cart
-  void removeFromCart(SellerProducts cartItem, BuildContext context) {
+  void removeFromCart(UserCart cartItem, BuildContext context) {
     /// get access to cart
-    final sellerProducts = context.read<SellerProducts>();
+    final userCart = context.read<UserCart>();
 
     /// remove the item
-    sellerProducts.removeFromCart(cartItem);
+    userCart.removeFromCart(cartItem);
   }
 
   /// get all item's price
   void getAllItemPrice(BuildContext context) {
-    final sellerProducts = context.read<SellerProducts>();
+    final userCart = context.read<UserCart>();
     allItemPrice = 0;
-    for (var i = 0; i < sellerProducts.cart.length; i++) {
-      allItemPrice += sellerProducts.cart[i].productPrice;
+    for (var i = 0; i < userCart.cart.length; i++) {
+      allItemPrice += userCart.cart[i].productPrice;
     }
 
     allItemPriceFormat = NumberFormat.currency(
@@ -47,14 +48,16 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     getAllItemPrice(context);
     Size sc = Utils().getScreenSize();
-    return Consumer<SellerProducts>(
+    return Consumer<UserCart>(
       builder: (context, value, child) => Scaffold(
         backgroundColor: ColorResources.getHomeBg(context),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: ColorResources.getHomeBg(context),
-          title: const Text("My Cart",
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          title: const Text(
+            "Keranjang",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
         ),
         body: value.cart.isEmpty
@@ -70,10 +73,12 @@ class _CartScreenState extends State<CartScreen> {
                   /// Costumer's Cart
                   Expanded(
                     child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const ScrollPhysics(),
                       itemCount: value.cart.length,
                       itemBuilder: (context, index) {
                         /// get items from cart
-                        final SellerProducts cartItems = value.cart[index];
+                        final UserCart cartItems = value.cart[index];
 
                         /// get item's name
                         final String itemName = cartItems.productName;
@@ -91,51 +96,87 @@ class _CartScreenState extends State<CartScreen> {
                         final String itemImage = cartItems.productImage;
 
                         /// return list tile
-                        return Container(
-                          decoration: BoxDecoration(
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                            top: 15.0,
+                            left: 15.0,
+                            right: 15.0,
+                          ),
+                          child: Container(
+                            clipBehavior: Clip.hardEdge,
+                            width: sc.width * 1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
                               color: ColorResources.white,
-                              borderRadius: BorderRadius.circular(8),
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 0.8,
                                   color: blue1,
-                                  offset: const Offset(0.0, 0.5),
+                                  offset: Offset(0.0, 0.5),
                                 )
-                              ]),
-                          margin: const EdgeInsets.only(
-                              left: 20, top: 20, right: 20),
-                          child: ListTile(
-                            leading: Container(
-                              width: sc.width * 0.13,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                    image: NetworkImage(itemImage),
-                                    fit: BoxFit.fill),
-                              ),
+                              ],
                             ),
-                            title: Text(
-                              itemName,
-                              style: const TextStyle(
-                                color: ColorResources.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              itemPrice,
-                              style: const TextStyle(
-                                color: ColorResources.black,
-                              ),
-                            ),
-                            trailing: IconButton(
-                              onPressed: () {
-                                removeFromCart(cartItems, context);
-                                getAllItemPrice(context);
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                color: ColorResources.black,
-                              ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                /// gambar produk
+                                Container(
+                                  height: sc.height * 0.1,
+                                  width: sc.width * 0.2,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(itemImage),
+                                    ),
+                                  ),
+                                ),
+
+                                /// nama dan harga
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        itemName,
+                                        style: TextStyle(
+                                            color: blue1,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        height: sc.height * 0.005,
+                                      ),
+                                      Text(
+                                        itemPrice,
+                                        style: const TextStyle(
+                                            fontSize: 20,
+                                            color: ColorResources.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Expanded(child: SizedBox()),
+
+                                /// tombol jumlah item
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: sc.height * 0.02,
+                                      horizontal: sc.width * 0.01),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      removeFromCart(cartItems, context);
+                                      getAllItemPrice(context);
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: ColorResources.black,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         );
@@ -147,7 +188,11 @@ class _CartScreenState extends State<CartScreen> {
                   Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  Payment(allItemPrice: allItemPrice)))),
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(light.primaryColor),

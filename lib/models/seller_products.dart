@@ -26,22 +26,6 @@ class SellerProducts extends ChangeNotifier {
   /// seller products
   List<SellerProducts> _sellerProducts = [];
 
-  /// user's cart
-  List<SellerProducts> _cart = [];
-
   /// getter methods
   List<SellerProducts> get sellerProducts => _sellerProducts;
-  List<SellerProducts> get cart => _cart;
-
-  void addToCart(SellerProducts item, int quantity) {
-    for (var i = 0; i < quantity; i++) {
-      _cart.add(item);
-    }
-    notifyListeners();
-  }
-
-  void removeFromCart(SellerProducts item) {
-    _cart.remove(item);
-    notifyListeners();
-  }
 }
